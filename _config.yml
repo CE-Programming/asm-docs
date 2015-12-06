@@ -7,10 +7,10 @@ permalink:        pretty
 relative_permalinks: true
 
 # Setup
-tagline:          'CE Programming'
-description:      'Programming documentation and tools for TI CE calculators (84+CE / 83PCE)'
-url:              "http://ce-programming.github.io/documentation/"
-baseurl:          "http://ce-programming.github.io/documentation/"
+tagline:          'CE Programming docs'
+description:      'Native programming documentation for TI CE calculators (84+CE / 83PCE)'
+url:              "https://ce-programming.github.io"
+baseurl:          "/documentation"
 
 paginate:         5
 
@@ -18,4 +18,4 @@ paginate:         5
 version:          1.0.0
 
 github:
-  repo:           "http://ce-programming.github.io"
+  repo:           "https://ce-programming.github.io/documentation"

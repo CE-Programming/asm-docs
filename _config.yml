@@ -7,7 +7,6 @@ permalink:        pretty
 relative_permalinks: true
 
 # Setup
-title:            CE
 tagline:          'CE Programming'
 description:      'Programming documentation and tools for TI CE calculators (84+CE / 83PCE)'
 url:              "http://ce-programming.github.io/documentation/"

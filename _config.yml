@@ -9,8 +9,8 @@ relative_permalinks: true
 # Setup
 tagline:          'CE Programming'
 description:      'Programming documentation and tools for TI CE calculators (84+CE / 83PCE)'
-url:              "http://ce-programming.github.io/documentation/"
-baseurl:          "http://ce-programming.github.io/documentation"
+url:              "http://ce-programming.github.io/documentation"
+baseurl:          /
 
 paginate:         5
 

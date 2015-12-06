@@ -7,7 +7,7 @@ permalink:        pretty
 
 # Setup
 tagline:          'CE Programming docs'
-description:      'Native programming documentation for TI CE calculators (84+CE / 83PCE)'
+description:      'Native programming documentation for TI CE calculators\n(84+CE / 83PCE)'
 url:              "https://ce-programming.github.io"
 baseurl:          "/documentation"
 

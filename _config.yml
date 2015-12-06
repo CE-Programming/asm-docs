@@ -11,8 +11,8 @@ title:            Documentation
 name:             Documentation
 tagline:          'A Jekyll theme'
 description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:              "http://ce-programming.github.io/documentation"
-baseurl:          "http://ce-programming.github.io/documentation"
+url:              "http://ce-programming.github.io/documentation/"
+baseurl:          "http://ce-programming.github.io/documentation/"
 
 author:
   name:           'Mark Otto'
@@ -24,4 +24,4 @@ paginate:         5
 version:          2.1.0
 
 github:
-  repo:           "http://ce-programming.github.io/documentation"
+  repo:           "http://ce-programming.github.io/documentation/"

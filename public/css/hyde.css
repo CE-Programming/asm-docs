@@ -111,6 +111,12 @@ a.sidebar-nav-item:focus {
     right:  1rem;
     left:   1rem;
   }
+  .sidebar-sticky-bottom {
+    position: absolute;
+    right:  1rem;
+    bottom: 0rem;
+    left:   1rem;
+  }
 }
 
 

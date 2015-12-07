@@ -23,8 +23,8 @@ Now, copy and paste the following assembly code into the 'main.asm' file:
 {% highlight %}
 #include "ti84ce.inc"
 
-.db t2ByteTok,tAsmCmp
-.org usermem
+.db tExtTok,tAsm84CECmp
+.org UserMem
 
 call _HomeUp
 ld hl,msg

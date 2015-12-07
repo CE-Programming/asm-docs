@@ -13,6 +13,7 @@
  * https://github.com/poole/hyde.
  */
 
+/* Modified by the CE-Programming contributors. See on GitHub */
 
 /*
  * Contents
@@ -127,8 +128,8 @@ a.sidebar-nav-item:focus {
  */
 
 .content {
-  padding-top:    4rem;
-  padding-bottom: 4rem;
+    padding-top: .5rem;
+    padding-bottom: 2rem;
 }
 
 @media (min-width: 48em) {

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: C Enviornment Setup
+title: C Environment Setup
 permalink: /setup/csetup.html
 ---
 

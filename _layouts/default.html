@@ -8,8 +8,12 @@
     {% include sidebar.html %}
 
     <div class="content container">
-      <p>Welcome to CE Programming! Here you will learn the skills and get the tools in order to natively program your CE calculator. Use the navigation pane to your left in order to browse through the available documentation, or if this isyour first time, follow the below link in order to begin your enviornment setup.</p>
-      <a href="{{ site.baseurl }}/setup">Begin Setup</a>
+      {% if page.title == "Home" %}
+        <h>Welcome</h>
+        <p>Welcome to CE Programming! Here you will learn the skills and get the tools in order to natively program your CE calculator. Use the navigation pane to your left in order to browse through the available documentation, or if this isyour first time, follow the below link in order to begin your enviornment setup.</p>
+        <a href="{{ site.baseurl }}/setup">Begin Setup</a>
+        <br></br>
+      {% endif %}
       {{ content }}
     </div>
 

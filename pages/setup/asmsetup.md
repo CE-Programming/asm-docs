@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ASM Enviornment Setup
+title: ASM Environment Setup
 permalink: /setup/asmsetup.html
 ---
 

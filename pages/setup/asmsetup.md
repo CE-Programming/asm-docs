@@ -11,21 +11,21 @@ Welcome! Here you will find the nessasary tools for programming in eZ80 assembly
 As it is a good idea to get familiar with a command shell when doing actual development, this guide will aid you in that process. Simply open a command window, either the command prompt in windows or a similar variant. You can find information on using the shell and available commands [here](http://ss64.com/nt/).
 
 Now, input the following command:
-{% highlight js %}
+```
 md CEasm/include CEasm/tools
-{% endhighlight %}
+```
 The **md** command creates a directory called *CEasm*, with two subdirectories called *include* and *tools*. We will be placing some things in these folders shortly.
 
 Now, input the following command:
-{% highlight js %}
+```
 echo.>CEasm/include/ti84pce.inc
-{% endhighlight %}
+```
 This will create an empty file called *ti84pce.inc* in the *./CEasm/include/* directory.
 
 Now, we are going to add some inforamtion to this file. Open the *ti84pce.inc* file in your favorite editing software, such as notepad. If you aren't sure where the *ti84pce.inc* file is if you are used to the nice GUI provided by Windows, simply type:
-{% highlight js %}
+```
 echo %cd%/CEasm/include
-{% endhighlight %}
+```
 into the shell, and it will give you an exact path of the file location.
 
 Open the the CE [Include File](http://wikiti.brandonw.net/index.php?title=84PCE:OS:Include_File) and copy everything in the gray container box, paste into the *ti84pce.inc* file, save, and exit.

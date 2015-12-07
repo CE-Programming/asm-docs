@@ -20,7 +20,7 @@ Simply copy all the text on that page within the gray box into the 'ti84pce.inc'
 
 Now, copy and paste the following assembly code into the 'main.asm' file:
 
-{% highlight %}
+{% highlight js %}
 #include "ti84ce.inc"
 
 .db tExtTok,tAsm84CECmp

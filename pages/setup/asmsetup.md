@@ -22,7 +22,11 @@ echo.>CEasm/include/ti84pce.inc
 {% endhighlight %}
 This will create an empty file called *ti84pce.inc* in the *./CEasm/include/* directory.
 
-Now, we are going to add some inforamtion to this file. Open the *ti84pce.inc* file in your favorite editing software, such as notepad. If you aren't sure where the *ti84pce.inc* file is if you are used to the nice GUI provided by Windows, simply type **echo %cd%/CEasm/include** into the shell, and it will give you an exact path of the file location.
+Now, we are going to add some inforamtion to this file. Open the *ti84pce.inc* file in your favorite editing software, such as notepad. If you aren't sure where the *ti84pce.inc* file is if you are used to the nice GUI provided by Windows, simply type:
+{% highlight js %}
+echo %cd%/CEasm/include
+{% endhighlight %}
+into the shell, and it will give you an exact path of the file location.
 
 Open the the CE [Include File](http://wikiti.brandonw.net/index.php?title=84PCE:OS:Include_File) and copy everything in the gray container box, paste into the *ti84pce.inc* file, save, and exit.
 

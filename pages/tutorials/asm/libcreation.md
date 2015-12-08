@@ -117,14 +117,14 @@ _sample2:
 
 Function arguments and return types are listed here: (or you can use the uint{x}_t definitions from *stdint.h*)
 
-```
-char    8 bits
-short   16 bits
-int     24 bits
-long    32 bits
-float   32 bits
-double  32 bits
-```
+Type         |  Size
+------------ | -------------
+char         | 8 bits
+short        | 16 bits
+int          | 24 bits
+long         | 32 bits
+float        | 32 bits
+double       | 32 bits
 
 In C, functions recieve arguemnts from the stack in reverse order. Say you call from C a function such as this:
 

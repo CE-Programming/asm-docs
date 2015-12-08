@@ -25,7 +25,7 @@ SOURCES = template.asm
 
 Now, close the *MakeFile*, and open the *template.asm* file, or what you may have renamed it to. It should look like this:
 
-```pasm
+```nasm
 #include "../include/relocation.inc"
 
  .libraryName		"TEMPLTE"

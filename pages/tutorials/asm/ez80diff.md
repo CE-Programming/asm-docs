@@ -33,5 +33,5 @@ Or something similar, this can simply be replaced with:
  * For example, ```ld.sis (fillRectColor-$D00000),hl```, only stores the low 2 bytes in HL to fillRectColor, as long as **MBASE** is 0xD0. Notice the "-$D00000"; this makes sure it is only a 16 bit address.
  * **NOTE**: This is only allowed if the address range is has a high byte of 0xD0 when innterrupts are enabled. This is because the interrupt handler sets MBASE to 0xD0. If you disable interrupts, MBASE can be anything you desire.
 * For some reason, instruction syntax in eZ80 looks a little different in eZ80. When using instructions that opperate on the accumulator, an 'a' is also added to the operands. Note that this means absolutely nothing, but is proper styling.
- * Example: Z80 code: ```or a``` would be ```or a,a``` in eZ80.
- * Example: Z80 code: ```cp (hl)``` would be ```cp a,(hl)``` in eZ80.
+ * Example: Z80 code: ```or a``` -> eZ80 code:  ```or a,a```
+ * Example: Z80 code: ```cp (hl)``` -> eZ80 code: ```cp a,(hl)```

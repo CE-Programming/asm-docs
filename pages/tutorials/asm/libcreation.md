@@ -31,7 +31,7 @@ Now, close the *MakeFile*, and open the *template.asm* file, or what you may hav
  .libraryName		"TEMPLTE"
  .libraryVersion	1
  
- .function "sample",_sample
+ .function "void","sample","void",_sample
  
  .beginDependencies
  .endDependencies
@@ -67,11 +67,19 @@ Great, now you are all set up! Let's start with how to program a library. First,
 
 ## Functions
 
-The syntax for creating functions is as follows:
+The syntax for a function is:
 
 ```
-.function "{ function name }",{ source label }
+.function "{ function return }","{ function name }","{ function arguments }",{ source label }
 ```
+
+**{ function return }**: In C, this is the return type for your function.
+
+**{ function name }**: Name of the function that you will use in your C/ASM code.
+
+**{ function arguments }**: In C, this is the list of arguments your function takes.
+
+**{ source label }**: The location in your library where your function is.
 
 To insert a new function into your library, just insert a new line right below the previous function. So if you had a library with 3 functions, it would look something like this:
 
@@ -81,9 +89,9 @@ To insert a new function into your library, just insert a new line right below t
  .libraryName		"TEMPLTE"
  .libraryVersion	1
  
- .function "sampleFunc0",_sample0
- .function "sampleFunc1",_sample1
- .function "sampleFunc2",_sample2
+ .function "void","sampleFunc0","void",_sample0
+ .function "void","sampleFunc1","void",_sample1
+ .function "void","sampleFunc2","void",_sample2
  
  .beginDependencies
  .endDependencies
@@ -107,7 +115,46 @@ _sample2:
  .endLibrary
 ```
 
-Note that *{ function name }* is the name of the function that you will use in your C/ASM code later, and the *{ source label }* is the location in your library code where the function is.
+Function arguments and return types are listed here: (or you can use the uint{x}_t definitions from *stdint.h*)
+
+```
+char    8 bits
+short   16 bits
+int     24 bits
+long    32 bits
+float   32 bits
+double  32 bits
+```
+
+In C, functions recieve arguemnts from the stack in reverse order. Say you call from C a function such as this:
+
+```sample(10, 20, 30);```
+
+Then you can pull arguments out like this in assembly:
+
+```
+_sample:
+ push ix
+  ld ix,0
+  add ix,sp
+  ld hl,(ix+6)  ; hl = 30
+  ld de,(ix+9)  ; de = 20 
+  ld bc,(ix+12) ; bc = 10
+ pop ix
+ ret
+```
+
+Here's a helpful table: (Memory goes from **Low -> High**)
+
+Type         |  Size         | Memory
+------------ | ------------- | ------------- 
+char         | 3 bytes       | xx ?? ??
+short        | 3 bytes       | xx xx ??
+int          | 3 bytes       | xx xx xx
+long         | 6 bytes       | xx xx xx xx ?? ??
+float        | 6 bytes       | xx xx xx xx ?? ??
+double       | 6 bytes       | xx xx xx xx ?? ??
+pointer      | 3 bytes       | xx xx xx
 
 ## Relocations
 
@@ -140,36 +187,6 @@ libdata:
 Note the ```.r``` prefix on instructions. This tells the assembler to add the address to the relocation table, so that is can be posistion independent. Do this when you make calls or absolute jumps within your program. Note that relative jumps **do not** require this.
 Its counterpart, ```.r2```, is used when the instruction uses ```ix```, or is { ```ld (imm24),de``` or ```ld (imm24),bc``` }. This is important, so be sure to watch out for it.
 
-In C, functions recieve arguemnts from the stack in reverse order. Say you call from C a function such as this:
-
-```sample(10, 20, 30);```
-
-Then you can pull arguments out like this in assembly:
-
-```
-_sample:
- push ix
-  ld ix,0
-  add ix,sp
-  ld hl,(ix+6)  ; hl = 30
-  ld de,(ix+9)  ; de = 20 
-  ld bc,(ix+12) ; bc = 10
- pop ix
- ret
-```
-
-Here's a helpful table: (Low to High)
-
-Type         |  Size         | Memory
------------- | ------------- | ------------- 
-char         | 3 bytes       | xx ?? ??
-short        | 3 bytes       | xx xx ??
-int          | 3 bytes       | xx xx xx
-long         | 6 bytes       | xx xx xx xx ?? ??
-float        | 6 bytes       | xx xx xx xx ?? ??
-double       | 6 bytes       | xx xx xx xx ?? ??
-pointer      | 3 bytes       | xx xx xx
-
 There you are! Now you should be able to write your library in no time at all.
 
 # Assembling
@@ -188,9 +205,7 @@ A **.h** file is also generated. Find out more about it below:
 
 # Creating your header file
 
-When you assemble your library, a header file is automatically generated for you. However, it assumes that all function's return type is void, and recieves no arguments. It is up to you to change these prototypes yourself, in order to match how your library functions actually work.
-
-Here is a sample header file in its generated form. Notice that if the function *sampleFunc* is prototyped incorrectly, you **must** change it in order to use it correctly.
+When you assemble your library, a header file is automatically generated for you. Here's an example one. Header guards are automatically inserted, along with some extra comment space. The *#pragmas* are used by the compiler; I wouldn't worry too much over what they do.
 
 ```
 /***************************************************
@@ -210,17 +225,6 @@ Here is a sample header file in its generated form. Notice that if the function 
 void sampleFunc(void);
 
 #endif
-```
-
-Here is the type definitions (or you can use the uint{x}_t definitions from *stdint.h*):
-
-```
-char    8 bits
-short   16 bits
-int     24 bits
-long    32 bits
-float   32 bits
-double  32 bits
 ```
 
 # Finishing Up

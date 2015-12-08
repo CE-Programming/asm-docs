@@ -144,9 +144,9 @@ _sample:
  ret
 ```
 
-Here's a helpful table: (Memory goes from **Low -> High**)
+Here's a helpful table that lists the sizes and place on the stack for C arguments: (Stack memory goes from **Low** -> **High**)
 
-Type         |  Size         | Memory
+Type         |  Size         | Stack Memory
 ------------ | ------------- | ------------- 
 char         | 3 bytes       | xx ?? ??
 short        | 3 bytes       | xx xx ??

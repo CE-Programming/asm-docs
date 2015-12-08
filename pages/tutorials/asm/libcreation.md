@@ -19,11 +19,11 @@ LIB = TEMPLTE
 SOURCES = template.asm
 ```
 
-**LIB** is the name of the library AppVar that will exist on your calculator. Try to make this somewhat descriptive.
+**LIB**: The name of the library AppVar that will exist on your calculator. Try to make this somewhat descriptive.
 
-**SOURCES** This countains the name of the files you wish to use for your library. If you rename the *template.asm* in your directory, you **must** also update it here.
+**SOURCES**: This countains the name of the files you wish to use for your library. If you rename the *template.asm* in your directory, you **must** update it here as well.
 
-Now, close the *MakeFile*, and open the *template.asm* file, or whatever you have renamed it to. It should look like this:
+Now, close the *MakeFile*, and open the *template.asm* file, or what you may have renamed it to. It should look like this:
 
 ```
 #include "../include/relocation.inc"
@@ -186,10 +186,31 @@ The file **relocation_table** is created if your library uses absolute relocatio
 
 A **.h** file is also generated. Find out more about it below:
 
-
 # Creating your header file
 
 When you assemble your library, a header file is automatically generated for you. However, it assumes that all function's return type is void, and recieves no arguments. It is up to you to change these prototypes yourself, in order to match how your library functions actually work.
+
+Here is a sample header file in its generated form. Notice that if the function *sampleFunc* is prototyped incorrectly, you **must** change it in order to use it correctly.
+
+```
+/***************************************************
+  TEMPLTE library header file
+  version 1
+***************************************************/
+
+#ifndef _H_TEMPLTE
+#define _H_TEMPLTE
+
+#pragma asm "include ./asm/libheader.asm"
+#pragma asm "include ./asm/TEMPLTE.asm"
+
+/***************************************************
+  function: sampleFunc
+***************************************************/
+void sampleFunc(void);
+
+#endif
+```
 
 Here is the type definitions (or you can use the uint{x}_t definitions from *stdint.h*):
 
@@ -215,6 +236,10 @@ Now, whenever you want to use your libraries functions in your program, simply d
 ```
 
 Where *template.h* is the name of the header file you copied.
+
+# Dependencies
+
+TODO
 
 # Some important notes
 

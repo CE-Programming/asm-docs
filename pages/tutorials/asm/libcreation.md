@@ -70,16 +70,16 @@ Great, now you are all set up! Let's start with how to program a library. First,
 The syntax for a function is:
 
 ```
-.function "{ function return }","{ function name }","{ function arguments }",{ source label }
+.function "{ ret }","{ name }","{ args }",{ label }
 ```
 
-**{ function return }**: In C, this is the return type for your function.
+**{ ret }**: In C, this is the return type for your function.
 
-**{ function name }**: Name of the function that you will use in your C/ASM code.
+**{ name }**: Name of the function that you will use in your C/ASM code.
 
-**{ function arguments }**: In C, this is the list of arguments your function takes.
+**{ args }**: In C, this is the list of arguments your function takes.
 
-**{ source label }**: The location in your library where your function is.
+**{ label }**: The location in your library where your function is.
 
 To insert a new function into your library, just insert a new line right below the previous function. So if you had a library with 3 functions, it would look something like this:
 

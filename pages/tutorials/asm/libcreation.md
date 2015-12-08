@@ -36,12 +36,12 @@ Now, close the *MakeFile*, and open the *template.asm* file, or whatever you hav
  .beginDependencies
  .endDependencies
 
-;== Start Library Code
+; Start Library Code
 
 _sample:
  ret
 
-;== End Library Code
+; End Library Code
 
  .endLibrary
  ```
@@ -65,7 +65,7 @@ _sample:
 
 Great, now you are all set up! Let's start with how to program a library. First, note that libraries are a little different than writting straight assembly programs.
 
-### Functions
+## Functions
 
 The syntax for creating functions is as follows:
 
@@ -88,7 +88,7 @@ To insert a new function into your library, just insert a new line right below t
  .beginDependencies
  .endDependencies
 
-;== Start Library Code
+; Start Library Code
 
 _sample0:
  ; does things
@@ -102,12 +102,14 @@ _sample2:
  ; does things
  ret
 
-;== End Library Code
+; End Library Code
 
  .endLibrary
 ```
 
 Note that *{ function name }* is the name of the function that you will use in your C/ASM code later, and the *{ source label }* is the location in your library code where the function is.
+
+## Relocations
 
 **Important note**: Because libraries are posistion independent, this means that any usage of a ```call```, ```jp```, or absolute location **must** be relocated. The following shows how:
 

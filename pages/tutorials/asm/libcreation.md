@@ -114,7 +114,7 @@ Note that *{ function name }* is the name of the function that you will use in y
 **Important note**: Because libraries are posistion independent, this means that any usage of a ```call```, ```jp```, or absolute location **must** be relocated. The following shows how:
 
 ```
-;== Start Library Code
+; Start Library Code
 
 _sample0:
  .r jp _sample2
@@ -134,7 +134,7 @@ libtext:
 libdata:
  .dl 100
  
-;== End Library Code
+; End Library Code
 ```
 
 Note the ```.r``` prefix on instructions. This tells the assembler to add the address to the relocation table, so that is can be posistion independent. Do this when you make calls or absolute jumps within your program. Note that relative jumps **do not** require this.

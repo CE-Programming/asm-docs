@@ -9,3 +9,11 @@
   ga('create', 'UA-70655708-1', 'auto');
   ga('send', 'pageview');
   </script>
+
+  <script src="{{ site.baseurl }}/public/js/highlighter.min.js"></script>
+  <script>
+      hljs.configure({"useBR":true});
+      Array.prototype.forEach.call(document.querySelectorAll('div.highlight pre code'), function(el) {
+          hljs.highlightBlock(el);
+      });
+  </script>

@@ -17,7 +17,7 @@ As you may have noticed, this is precisely the same layout in Tutorial 1. This i
     |
     tutorial_1
     |
-    tutorial_2
+    **tutorial_2**
 ```
 
 # Introduction
@@ -86,7 +86,7 @@ scan_wait:
 
 Great, now we can get input from the keypad. But where is this data located? Since the keypad is a part of the memory-mapped port range, it exists in the $F50000 address space.
 
-The following table will breaks it down:
+The following table breaks it down:
 
 Address | Equate | Bit 0 | Bit 1 | Bit 2 | Bit 3 | Bit 4 | Bit 5 | Bit 6 | Bit 7
 ------- | ------ | ----- | ----- | ----- | ----- | ----- | ----- | ----- | -----
@@ -234,6 +234,8 @@ This program demonstrates how one might do that. Now, you should be able to move
 * Add some more functions using the keypad
  * Center the rectangle if the [2ND] key is pressed
  * Add movement of multiple rectangles
+
+Let's keep going! [**Tutorial 3: Double Buffering**]({{site.baseurl}}/tutorials/asm/double-buffering/)
 
 ```
 #include "../include/ti84pce.inc"

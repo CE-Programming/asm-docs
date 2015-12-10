@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Instruction Set
-permalink: /references/os/instructions.html
+permalink: /references/ez80/instructions.html
 ---
 
 To be written.

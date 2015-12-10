@@ -102,9 +102,11 @@ Once we end our key loop, we then need to do some common cleanup in order to pro
  ret
 ```
  
- # Finishing Up
+# Finishing Up
  
 Great! You have just completed the first tutorial. It is simple in order to get you started. The following tutorials will move at a somewhat faster pace. In case you didn't quite catch all of the code, here is the resultant:
+
+Let's keep going.
 
 ```
 #include "..\include\ti84pce.inc"
@@ -156,5 +158,3 @@ waitforenter:
  call _DrawStatusBar
  ret
 ```
-
-Let's keep going.

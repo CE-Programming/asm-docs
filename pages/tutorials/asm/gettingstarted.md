@@ -145,7 +145,7 @@ _cp1555loop:
  
  ld a,$E0           ; Place your favorite color index here
  ld hl,vram
- ld bc,(lcdWidth*lcdDeight)-1
+ ld bc,(lcdWidth*lcdHeight)-1
  call _MemSet
  
 waitForEnter:

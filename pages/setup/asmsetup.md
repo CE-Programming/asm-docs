@@ -38,4 +38,4 @@ Place spasm-ng into the *tools* directory, and be sure to rename it to **spasm.e
 
 Now you are ready to begin your journey into programming in assembly! Let us begin with the first tutorial.
 
-1. [Getting started]({{ site.baseurl }}/tutorials/asm/1.html)
+1. [Getting started]({{ site.baseurl }}/tutorials/asm/gettingstarted.html)

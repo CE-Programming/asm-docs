@@ -4,8 +4,6 @@ title: Keypad Equates
 permalink: /resources/asm/keypad-equates/
 ---
 
-[TODO]: Clean this up into tables
-
 ```
 ; DI Keyboard Equates
 ;---------------------------

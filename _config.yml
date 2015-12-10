@@ -1,6 +1,6 @@
 # Dependencies
 markdown:         redcarpet
-highlighter:      pygments
+highlighter:      null
 
 # Permalinks
 permalink:        pretty
@@ -15,7 +15,7 @@ paginate:         5
 
 redcarpet:
   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
-# highlighter: pygments
+
 permalink: /:title/
 
 # The release of Jekyll Now that you're using

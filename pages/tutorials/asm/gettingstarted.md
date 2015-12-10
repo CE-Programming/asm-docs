@@ -17,8 +17,8 @@ This is the default template for all CE assembly programs. Simply copy and paste
 ```asm
 #include "..\include\ti84pce.inc"
 .assume ADL=1
-.db     texttok,tasm84cecmp
-.org    usermem
+.db     tExtTok,tAsm84CECmp
+.org    userMem
 
 ; Start of program code
 ```
@@ -112,14 +112,14 @@ Let's keep going!
 ```
 #include "..\include\ti84pce.inc"
 .assume ADL=1
-.db     texttok,tasm84cecmp
-.org    usermem
+.db     tExtTok,tAsm84CECmp
+.org    userMem
 
 ; Start of program code
  di
  call _RunIndicOff
  
-Create1555Palette:
+create1555Palette:
  ld hl,mpLcdPalette				; MMIO address of LCD Palette
  ld b,0
 _cp1555loop:
@@ -145,13 +145,13 @@ _cp1555loop:
  
  ld a,$E0           ; Place your favorite color index here
  ld hl,vram
- ld bc,(lcdwidth*lcdheight)-1
+ ld bc,(lcdWidth*lcdDeight)-1
  call _MemSet
  
-waitforenter:
+waitForEnter:
  call _GetCSC
  cp skEnter
- jr nz,waitforenter
+ jr nz,waitForEnter
  
  call _ClrScrn
  ld a,lcdbpp16

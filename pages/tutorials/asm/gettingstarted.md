@@ -64,3 +64,13 @@ _cp1555loop:
  jr nz,_cp1555loop
 ```
 ![1555 Palette]({{site.baseurl}}/images/tutorials/asm/rgbhlpalette.png "Special thanks to Shaun 'Merthsoft' McFall for generating this image")
+Now that the palette is set to the above image, we should clear the screen so that it doesn't cause weird graphical effects when switching modes. Then we can enable 8bpp mode. The code below will accomplish both of these tasks:
+
+```
+ call _clearVRAM    ; Set all of VRAM to $FF
+ ld a,lcdbpp8
+ ld (mpLcdCtrl),a
+```
+
+Congradulations! Now if you write the number $23 into the LCD data located at VRAM, the pixels will be set to a green color, and if you write a $E0, the color will be red, as shown in the palette.
+

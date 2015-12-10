@@ -67,7 +67,7 @@ rectColor = $+1
  ret
 ```
 
-Now that we have the code to draw a rectangle, we need to understand how the keypad controller works. Per the [**WikiTI page**](), the simplest way to scan is to perform a single scan. The following code accomplishes that:
+Now that we have the code to draw a rectangle, we need to understand how the keypad controller works. Per the [**WikiTI page**](http://wikiti.brandonw.net/index.php?title=84PCE:Ports:A000), the simplest way to scan is to perform a single scan. The following code accomplishes that:
 
 (**Note:** interrupts must be disabled when executing this code in order to prevent the OS from taking control).
 
@@ -195,6 +195,7 @@ Note that if we simply redraw the square, the old square won't be erased. AS of 
 Option one is the perfered choice for now. In the next tutorial we will learn more about drawing to the LCD.
 
 This subroutine should preform what we need. First, it clears the screen, and then draws the new rectangle posistion. From the key input code block, you can now see where `RedrawScreen` comes from.
+
 ```
 RedrawScreen:
  ld hl,vram
@@ -233,7 +234,7 @@ This program demonstrates how one might do that. Now, you should be able to move
  * Add movement of multiple rectangles
 
 ```
-#include "..\include\ti84pce.inc"
+#include "../include/ti84pce.inc"
 
 #define RECT_WIDTH      10
 #define RECT_HEIGHT     10

@@ -10,11 +10,11 @@ Welcome! Here you will find the necessary tools for programming in eZ80 assembly
 
 As it is a good idea to get familiar with a command shell when doing actual development, this guide will aid you in that process. Simply open a command window, either the command prompt in windows or a similar variant. You can find information on using the shell and available commands for Windows [**here**](http://ss64.com/nt/).
 
-Now, input the following command: `mkdir CEasm/include CEasm/tools & cd CEasm` on Windows, or `mkdir -p CEasm/include CEasm/tools && cd CEasm` on Linux / OS X.
+Now, input the following command: `mkdir CEasm/include CEasm/tools & cd CEasm` on Windows, or `mkdir -p CEasm/include CEasm/tools && cd CEasm` on Linux/OS X.
 
 The **mkdir** command creates a directory, here called *CEasm*, with two subdirectories called *include* and *tools*. The **cd** command then navigates inside of the *CEasm* directory, which we will be using to place all of our example code in.
 
-Now, input the following command: `echo.>include/ti84pce.inc` on Windows, or `touch include/ti84pce.inc` on Linux / OS X.
+Now, input the following command: `echo.>include/ti84pce.inc` on Windows, or `touch include/ti84pce.inc` on Linux/OS X.
 
 This will create an empty file called *ti84pce.inc* in the *include* directory.
 
@@ -26,9 +26,10 @@ Now, you are going to need an assembler. Simply put, an assembler will translate
 
 The latest version of spasm-ng, an eZ80 assembler, can be found [**here**](https://github.com/alberthdev/spasm-ng/releases). You may want to build it from the source code to get the latest features/bugfixes, if possible.
 
-Place spasm-ng into the *tools* directory, and be sure to rename it to **spasm.exe** (or just **spasm** on Linux / OS X) if it is not already.
+Place spasm-ng into the *tools* directory, and be sure to rename it to **spasm.exe** (or just **spasm** on Linux/OS X) if it is not already.
 
 Now you are ready to begin your journey into programming in assembly!
 
 Let us begin with the first tutorial.
+
 1. [Getting started]({{ site.baseurl }}/tutorials/asm/getting-started)

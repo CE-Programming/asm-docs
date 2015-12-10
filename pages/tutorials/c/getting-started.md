@@ -8,17 +8,17 @@ The tutorials in this guide assume that you have a basic knowledge of C. If that
 
 The end result of all these tutorials is to [ TODO ]
 
-[ TODO ] : rewrite that following sentence for C
+[ TODO ] : rewrite that following sentence for C  
 Inside of your *CEasm* directory that you created in the [**setup**]({{site.baseurl}}/setup/asmsetup.html) guide, create a new folder called *tutorial_1*. Now, inside the *tutorial_1* directory, create a file called *main.asm*. This is the file in which you will be placing all of the following code.
 
 # Prerequisites
 
-[ TODO ] : talk about the fact that ZDS expects ANSI C (C89), thus some common C99-syntax won't work (give examples, comparisons, etc.)
-[ TODO ] : warn about `_OS( )` etc.
+[ TODO ] : talk about the fact that ZDS expects ANSI C (C89), thus some common C99-syntax won't work (give examples, comparisons, etc.)  
+[ TODO ] : warn about ZDS using IY and the `_OS( )` macro workaround, etc.
 
 # The Templates
 
-[ TODO ] : talk about the [future] multiple templates available from the toolchain folder (or will we put them in this doc repo?)
+[ TODO ] : talk about the [future] multiple templates available from the toolchain folder (or will we put them in this doc repo?)  
 but anyway, we'll start with a simple one here.
 
 # Introduction

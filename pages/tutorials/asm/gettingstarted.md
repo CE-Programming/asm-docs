@@ -43,10 +43,10 @@ First, most programs begin by turning off the OS run indicator and disabling int
 Next, since our program is going to be using 8bpp mode, we need to set up the palette. This can be done many ways, simply by writing the color data in 16 bit increments to the palette memory. This code will create the following palette, which is highly useful.
 
 ```asm
-Create1555Palette:
+create1555Palette:
  ld hl,mpLcdPalette				; MMIO address of LCD Palette
  ld b,0
-_cp1555loop:
+_cp1555Loop:
  ld d,b
  ld a,b
  and a,%11000000
@@ -61,7 +61,7 @@ _cp1555loop:
  ld (hl),d
  inc hl
  inc b
- jr nz,_cp1555loop
+ jr nz,_cp1555Loop
 ```
 ![1555 Palette]({{site.baseurl}}/images/tutorials/asm/rgbhlpalette.png "Special thanks to Shaun 'Merthsoft' McFall for generating this image")
 Now that the palette is set to the above image, we should clear the screen so that it doesn't cause weird graphical effects when switching modes. Then we can enable 8bpp mode. The code below will accomplish both of these tasks:
@@ -79,17 +79,17 @@ Now, let's fill the screen with your favorite color. Simply choose one of the co
 ```
  ld a,$E0           ; Place your favorite color index here
  ld hl,vram
- ld bc,(lcdwidth*lcdheight)-1
+ ld bc,(lcdWidth*lcdHeight)-1
  call _MemSet
 ```
 
 And then let's add a small key wait loop so we can see the results:
 
 ```
-waitforenter:
+waitForEnter:
  call _GetCSC
  cp skEnter
- jr nz,waitforenter
+ jr nz,waitForEnter
 ```
 
 Once we end our key loop, we then need to do some common cleanup in order to properly return to the TI-OS. This includes redrawing the status bar, and restoring 16bpp, along with a few other optional items. Here's some example exiting code:
@@ -99,6 +99,7 @@ Once we end our key loop, we then need to do some common cleanup in order to pro
  ld a,lcdbpp16
  ld (mpLcdCtrl),a
  call _DrawStatusBar
+ ei
  ret
 ```
  
@@ -156,5 +157,6 @@ waitforenter:
  ld a,lcdbpp16
  ld (mpLcdCtrl),a
  call _DrawStatusBar
+ ei
  ret
 ```

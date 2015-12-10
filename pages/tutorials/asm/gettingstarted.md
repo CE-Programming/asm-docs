@@ -49,13 +49,13 @@ Create1555Palette:
 _cp1555loop:
  ld d,b
  ld a,b
- and %11000000
+ and a,%11000000
  srl d
  rra
  ld e,a
  ld a,%00011111
- and b
- or e
+ and a,b
+ or a,e
  ld (hl),a
  inc hl
  ld (hl),d
@@ -72,5 +72,89 @@ Now that the palette is set to the above image, we should clear the screen so th
  ld (mpLcdCtrl),a
 ```
 
-Congradulations! Now if you write the number $23 into the LCD data located at VRAM, the pixels will be set to a green color, and if you write a $E0, the color will be red, as shown in the palette.
+Congradulations! Now if you write the number from corresponding to the palette into the LCD data located at VRAM, the pixels will be set to the color at that palette offset.
 
+Now, let's fill the screen with your favorite color. Simply choose one of the color indexes, and add it to the following code:
+
+```
+ ld a,$E0           ; Place your favorite color here
+ ld hl,vram
+ ld bc,(lcdwidth*lcdheight)-1
+ call _MemSet
+```
+
+And then let's add a small key wait loop so we can see the results:
+
+```
+waitforenter:
+ call _GetCSC
+ cp skEnter
+ jr nz,waitforenter
+```
+
+Once we end our key loop, we then need to do some common cleanup in order to properly return to the TI-OS. This includes redrawing the status bar, and restoring 16bpp, along with a few other optional items. Here's some example exiting code:
+
+```
+ call _ClrScrn
+ ld a,lcdbpp16
+ ld (mpLcdCtrl),a
+ call _DrawStatusBar
+ ret
+```
+ 
+ # Finishing Up
+ 
+Great! You have just completed the first tutorial. It is simple in order to get you started. The following tutorials will move at a somewhat faster pace. In case you didn't quite catch all of the code, here is the resultant:
+
+```
+#include "..\include\ti84pce.inc"
+.assume ADL=1
+.db     texttok,tasm84cecmp
+.org    usermem
+
+; Start of program code
+ di
+ call _RunIndicOff
+ 
+Create1555Palette:
+ ld hl,mpLcdPalette				; MMIO address of LCD Palette
+ ld b,0
+_cp1555loop:
+ ld d,b
+ ld a,b
+ and a,%11000000
+ srl d
+ rra
+ ld e,a
+ ld a,%00011111
+ and a,b
+ or a,e
+ ld (hl),a
+ inc hl
+ ld (hl),d
+ inc hl
+ inc b
+ jr nz,_cp1555loop
+ 
+ call _clearVRAM    ; Set all of VRAM to $FF
+ ld a,lcdbpp8
+ ld (mpLcdCtrl),a
+ 
+ ld a,$E0           ; Place your favorite color here
+ ld hl,vram
+ ld bc,(lcdwidth*lcdheight)-1
+ call _MemSet
+ 
+waitforenter:
+ call _GetCSC
+ cp skEnter
+ jr nz,waitforenter
+ 
+ call _ClrScrn
+ ld a,lcdbpp16
+ ld (mpLcdCtrl),a
+ call _DrawStatusBar
+ ret
+```
+
+Let's keep going.

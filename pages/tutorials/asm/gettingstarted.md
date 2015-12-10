@@ -4,7 +4,7 @@ title: Getting Started
 permalink: /tutorials/asm/gettingstarted.html
 ---
 
-The tutorials in this guide assume that you have a decent knowledge of eZ80 assembly. However, if you have no idea where to begin, you will first want to begin with the updated version of [**Asm in 28 Days**](http://media.taricorp.net/83pa28d/lesson/toc.html#lessons), and then introduce yourself to the small changes with the new eZ80 processor, located [**here**]({{site.basurl}}/tutorials/asm/ez80diff.html).
+The tutorials in this guide assume that you have a decent knowledge of eZ80 assembly. However, if you have no idea where to begin, you will first want to begin with the updated version of [**Asm in 28 Days**](http://media.taricorp.net/83pa28d/lesson/toc.html#lessons), and then introduce yourself to the small changes with the new eZ80 processor, located [**here**]({{site.baseurl}}/tutorials/asm/ez80diff.html).
 
 The end result of all these tutorials is to construct a simple game of snake, starting with the basics and working towards more advanced things. 
 
@@ -35,14 +35,14 @@ As you reach a code block, read the description and append it to the *main.asm* 
 
 First, most programs begin by turning off the OS run indicator and disabling interrupts. This can be accomplished quite quickly with:
 
-```
+```asm
  di
  call _RunIndicOff
 ```
 
 Next, we since our program is going to be using 8bpp mode, we need to set up the palette. This can be done many ways, simply by writting the color data in 16 bit increments to the palette memory. This code will create the following palette, which is highly useful.
 
-```
+```asm
 Create1555Palette:
  ld hl,mpLcdPalette				; MMIO address of LCD Palette
  ld b,0
@@ -63,4 +63,4 @@ _cp1555loop:
  inc b
  jr nz,_cp1555loop
 ```
-![alt text]({{site.baseurl}}/tutorials/asm/images/rgbhlpalette.png "Special thanks to Shaun 'Merthsoft' McFall for generating this image")
+![1555 Palette]({{site.baseurl}}/images/tutorials/asm/rgbhlpalette.png "Special thanks to Shaun 'Merthsoft' McFall for generating this image")

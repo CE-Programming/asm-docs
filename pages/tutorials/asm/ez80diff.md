@@ -10,13 +10,13 @@ Of course, eZ80 assembly is a little different than what the guide uses throught
 
 * The **bcall()** and **bjump()** macros are no no longer nessasary. If you have Z80 code that looks like this:
 
-```
+```asm
  bcall(_ClrLCD)
 ```
 
 Or something similar, this can simply be replaced with:
 
-```
+```asm
  call _ClrLCD
 ```
 

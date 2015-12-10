@@ -48,9 +48,9 @@ _sample:
 
  Now, the very first thing you want to do is change this line:
 
-```
+```asm
  .libraryName		"TEMPLTE"
- ```
+```
 
  **Make sure TEMPLTE is changed to the name of your AppVar that you set before in the *LIB* part of the Makefile!**
 
@@ -69,7 +69,7 @@ Great, now you are all set up! Let's start with how to program a library. First,
 
 The syntax for a function is:
 
-```
+```asm
 .function "{ ret }","{ name }","{ args }",{ label }
 ```
 
@@ -83,7 +83,7 @@ The syntax for a function is:
 
 To insert a new function into your library, just insert a new line right below the previous function. So if you had a library with 3 functions, it would look something like this:
 
-```
+```asm
 #include "../include/relocation.inc"
 
  .libraryName		"TEMPLTE"
@@ -132,7 +132,7 @@ In C, functions recieve arguemnts from the stack in reverse order. Say you call 
 
 Then you can pull arguments out like this in assembly:
 
-```
+```asm
 _sample:
  push ix
   ld ix,0
@@ -160,7 +160,7 @@ pointer      | 3 bytes       | xx xx xx
 
 **Important note**: Because libraries are posistion independent, this means that any usage of a ```call```, ```jp```, or absolute location **must** be relocated. The following shows how:
 
-```
+```asm
 ; Start Library Code
 
 _sample0:
@@ -207,7 +207,7 @@ A **.h** file is also generated. Find out more about it below:
 
 When you assemble your library, a header file is automatically generated for you. Here's an example one. Header guards are automatically inserted, along with some extra comment space. The *#pragmas* are used by the compiler; I wouldn't worry too much over what they do.
 
-```
+```c
 /***************************************************
   TEMPLTE library header file
   version 1
@@ -235,7 +235,7 @@ Then copy the newly created **.asm** containing the jump table for your library.
 
 Now, whenever you want to use your libraries functions in your program, simply do:
 
-```
+```c
 #include <template.h>
 ```
 

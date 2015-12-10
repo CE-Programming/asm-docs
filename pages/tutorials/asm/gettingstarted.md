@@ -29,7 +29,7 @@ We are first going to understand how the CE LCD functions. To get things to disp
 
 However, the LCD supports countless permutations of operation. The OS normally operates in [16 bits per pixel (bpp)](https://en.wikipedia.org/wiki/High_color), or 16-bit high color with green containing the extra bit. However, while 16bpp is useful for full-color graphics and things, it tends to be quite slow when doing intensive graphical effects, as it must draw 153600 bytes per frame. This tutorial advocates for using palettized [8 bits per pixel](https://en.wikipedia.org/wiki/8-bit_color), where the color data is arranged in 1555 color, where 1=intensity, and 555=rgb respectively in the LCD palette memory. This not only makes it easy to compute the x and y offset for a pixel, but also leads to improved drawing performance, and a possibility for double buffering.
 
-# The Code
+# The code
 
 As you reach a code block, read the description and append it to the *main.asm* file you have, which should currently hold the template.
 
@@ -102,9 +102,9 @@ Once we end our key loop, we then need to do some common cleanup in order to pro
  ei
  ret
 ```
- 
+
 # Finishing Up
- 
+
 Congratulations! You have just completed the first tutorial. It is simple in order to get you started. The following tutorials will move at a somewhat faster pace. In case you didn't quite catch all of the code, here is the resultant:
 
 Let's keep going!
@@ -118,7 +118,7 @@ Let's keep going!
 ; Start of program code
  di
  call _RunIndicOff
- 
+
 create1555Palette:
  ld hl,mpLcdPalette				; MMIO address of LCD Palette
  ld b,0
@@ -138,21 +138,21 @@ _cp1555loop:
  inc hl
  inc b
  jr nz,_cp1555loop
- 
+
  call _clearVRAM    ; Set all of VRAM to $FF (white)
  ld a,lcdbpp8
  ld (mpLcdCtrl),a
- 
+
  ld a,$E0           ; Place your favorite color index here
  ld hl,vram
  ld bc,(lcdWidth*lcdHeight)-1
  call _MemSet
- 
+
 waitForEnter:
  call _GetCSC
  cp skEnter
  jr nz,waitForEnter
- 
+
  call _ClrScrn
  ld a,lcdbpp16
  ld (mpLcdCtrl),a

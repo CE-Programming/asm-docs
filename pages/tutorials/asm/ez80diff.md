@@ -35,6 +35,6 @@ Or something similar, this can simply be replaced with:
 * For some reason, instruction syntax in eZ80 looks a little different in eZ80. When using instructions that operate on the accumulator, an 'a' is also added to the operands. Note that this means absolutely nothing, but is proper styling.
  * Example: Z80 code: `or a` -> eZ80 code:  `or a,a`
  * Example: Z80 code: `cp (hl)` -> eZ80 code: `cp a,(hl)`
-* Finally, note that `out` and `in` instructions are completely blocked by the ASIC. `out` causes a hard reset, while `in` simply reads garbage. Be aware of this.
+* Finally, note that `out` and `in` instructions are completely blocked by the CE ASIC. `out` causes a hard reset, while `in` simply reads garbage. Be aware of this.
 
 The tutorials will also cover some of the more important parts that are unusable now in the ASM in 28 Days tutorial, such as screen drawing and interrupts. If you are unsure of how a tutorial operates, or would like a tutorial written for a certain thing, simply post your question on the GitHub page for this website.

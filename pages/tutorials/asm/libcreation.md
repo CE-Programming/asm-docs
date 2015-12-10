@@ -54,7 +54,7 @@ _sample:
 
  **Make sure TEMPLTE is changed to the name of your AppVar that you set before in the *LIB* part of the Makefile!**
 
- The next line, ```.libraryVersion``` tells us which version this library is. If you add a function, it is nessasary to update the version. If you simply change a function, or add more features to it, it is not nessasary to update the version.
+ The next line, ```.libraryVersion``` tells us which version this library is. If you add a function, it is necessary to update the version. If you simply change a function, or add more features to it, it is not necessary to update the version.
 
  **Note: Newer versions of libraries are *always* expected to be compatible with previous versions.**
 
@@ -126,7 +126,7 @@ long         | 32 bits
 float        | 32 bits
 double       | 32 bits
 
-In C, functions recieve arguemnts from the stack in reverse order. Say you call from C a function such as this:
+In C, functions receive arguments from the stack in reverse order. Say you call from C a function such as this:
 
 ```sample(10, 20, 30);```
 
@@ -158,7 +158,7 @@ pointer      | 3 bytes       | xx xx xx
 
 ## Relocations
 
-**Important note**: Because libraries are posistion independent, this means that any usage of a ```call```, ```jp```, or absolute location **must** be relocated. The following shows how:
+**Important note**: Because libraries are position-independent, this means that any usage of a ```call```, ```jp```, or absolute location **must** be relocated. The following shows how:
 
 ```asm
 ; Start Library Code
@@ -184,14 +184,14 @@ libdata:
 ; End Library Code
 ```
 
-Note the ```.r``` prefix on instructions. This tells the assembler to add the address to the relocation table, so that is can be posistion independent. Do this when you make calls or absolute jumps within your program. Note that relative jumps **do not** require this.
+Note the ```.r``` prefix on instructions. This tells the assembler to add the address to the relocation table, so that is can be position-independent. Do this when you make calls or absolute jumps within your program. Note that relative jumps **do not** require this.
 Its counterpart, ```.r2```, is used when the instruction uses ```ix```, or is { ```ld (imm24),de``` or ```ld (imm24),bc``` }. This is important, so be sure to watch out for it.
 
 There you are! Now you should be able to write your library in no time at all.
 
 # Assembling
 
-Once you are finished writting your library, you will want to open a command shell in your library's source directory. Simply type the command ```make```, which will assemble your library and produce some files.
+Once you are finished writing your library, you will want to open a command shell in your library's source directory. Simply type the command ```make```, which will assemble your library and produce some files.
 
 One file is a **.8xv**; your library's AppVar which is sent to the calculator.
 

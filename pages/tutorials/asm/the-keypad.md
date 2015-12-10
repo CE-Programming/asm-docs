@@ -103,7 +103,7 @@ Then, each bit is also given an equate, which follows the pattern: ```kbit{keyna
 
 So, the graph key bit name would be ```kbitGrah```, and others such as ```kbitAlpha```, ```kbdComma```, and ```kbitLParen```.
 
-You can find all the available keypad equates [**here**]({{site.baseurl}}/resources/keypad-equates).
+You can find all the available keypad equates [**here**]({{site.baseurl}}/resources/asm/keypad-equates).
 
 Now, we want to move the square around using the arrow keys. From the above table, we can see the arrow keys exist in ```kbdG7```. So, we just need to read ```kbdG7```, and then check the bit pattern.
 
@@ -219,6 +219,8 @@ RedrawScreen:
 #define RECT_HEIGHT     10
 #define RECT_COLOR_I    255     ; white
 ```
+
+# Finishing Up
 
 Of course, the next reasonable question is, how do I put this all together? 
 

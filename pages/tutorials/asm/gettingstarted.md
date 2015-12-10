@@ -27,7 +27,7 @@ This is the default template for all CE assembly programs. Simply copy and paste
 
 We are first going to understand how the CE LCD functions. To get things to display on the screen, the easiest thing to do is to write to the LCD memory (VRAM/GRAM, starting at address $D40000). VRAM is 320*240*2 (153600) bytes in size.
 
-However, the LCD supports countless permutations of operation. The OS normally operates in [16 bits per pixel (bpp)](https://en.wikipedia.org/wiki/High_color), or 16-bit high color with green containing the extra bit. However, while 16bpp is useful for full-color graphics and things, it tends to be quite slow when doing extremely intensive graphical effects, as it must draw 153600 bytes per frame. This is why this tutorial advocates for palettized [8 bits per pixel](https://en.wikipedia.org/wiki/8-bit_color), where the color data is stored in 1555 color, where 1=intensity, and 555=rgb respectively in the LCD palette memory. This not only makes it easy to compute the x and y offset for a pixel, but also leads to amazing graphical performance, and a possibility for double buffering.
+However, the LCD supports countless permutations of operation. The OS normally operates in [16 bits per pixel (bpp)](https://en.wikipedia.org/wiki/High_color), or 16-bit high color with green containing the extra bit. However, while 16bpp is useful for full-color graphics and things, it tends to be quite slow when doing intensive graphical effects, as it must draw 153600 bytes per frame. This tutorial advocates for using palettized [8 bits per pixel](https://en.wikipedia.org/wiki/8-bit_color), where the color data is arranged in 1555 color, where 1=intensity, and 555=rgb respectively in the LCD palette memory. This not only makes it easy to compute the x and y offset for a pixel, but also leads to improved drawing performance, and a possibility for double buffering.
 
 # The Code
 
@@ -40,7 +40,7 @@ First, most programs begin by turning off the OS run indicator and disabling int
  call _RunIndicOff
 ```
 
-Next, we since our program is going to be using 8bpp mode, we need to set up the palette. This can be done many ways, simply by writing the color data in 16 bit increments to the palette memory. This code will create the following palette, which is highly useful.
+Next, since our program is going to be using 8bpp mode, we need to set up the palette. This can be done many ways, simply by writing the color data in 16 bit increments to the palette memory. This code will create the following palette, which is highly useful.
 
 ```asm
 Create1555Palette:

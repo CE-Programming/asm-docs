@@ -67,7 +67,7 @@ _cp1555loop:
 Now that the palette is set to the above image, we should clear the screen so that it doesn't cause weird graphical effects when switching modes. Then we can enable 8bpp mode. The code below will accomplish both of these tasks:
 
 ```
- call _clearVRAM    ; Set all of VRAM to $FF
+ call _clearVRAM    ; Set all of VRAM to $FF (white)
  ld a,lcdbpp8
  ld (mpLcdCtrl),a
 ```
@@ -77,7 +77,7 @@ Great! Now if you write the number from corresponding to the palette into the LC
 Now, let's fill the screen with your favorite color. Simply choose one of the color indexes, and add it to the following code:
 
 ```
- ld a,$E0           ; Place your favorite color here
+ ld a,$E0           ; Place your favorite color index here
  ld hl,vram
  ld bc,(lcdwidth*lcdheight)-1
  call _MemSet
@@ -138,11 +138,11 @@ _cp1555loop:
  inc b
  jr nz,_cp1555loop
  
- call _clearVRAM    ; Set all of VRAM to $FF
+ call _clearVRAM    ; Set all of VRAM to $FF (white)
  ld a,lcdbpp8
  ld (mpLcdCtrl),a
  
- ld a,$E0           ; Place your favorite color here
+ ld a,$E0           ; Place your favorite color index here
  ld hl,vram
  ld bc,(lcdwidth*lcdheight)-1
  call _MemSet

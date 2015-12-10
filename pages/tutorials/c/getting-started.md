@@ -4,12 +4,10 @@ title: Your first CE C program
 permalink: /tutorials/c/getting-started/
 ---
 
-The tutorials in this guide assume that you have a basic knowledge of C. If that is not the case, you'll be able to find C tutorials easily on Google :)
-
-The end result of all these tutorials is to [ TODO ]
+The tutorials in this guide assume that you have a basic knowledge of C. If that is not the case, you'll be able to find C tutorials easily on Google.
 
 [ TODO ] : rewrite that following sentence for C  
-Inside of your *CEasm* directory that you created in the [**setup**]({{site.baseurl}}/setup/asmsetup.html) guide, create a new folder called *tutorial_1*. Now, inside the *tutorial_1* directory, create a file called *main.asm*. This is the file in which you will be placing all of the following code.
+Something something copying template to new folder called tutorial_1
 
 # Prerequisites
 

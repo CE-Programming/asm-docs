@@ -72,7 +72,7 @@ Now that the palette is set to the above image, we should clear the screen so th
  ld (mpLcdCtrl),a
 ```
 
-Congradulations! Now if you write the number from corresponding to the palette into the LCD data located at VRAM, the pixels will be set to the color at that palette offset.
+Great! Now if you write the number from corresponding to the palette into the LCD data located at VRAM, the pixels will be set to the color at that palette offset.
 
 Now, let's fill the screen with your favorite color. Simply choose one of the color indexes, and add it to the following code:
 
@@ -104,9 +104,9 @@ Once we end our key loop, we then need to do some common cleanup in order to pro
  
 # Finishing Up
  
-Great! You have just completed the first tutorial. It is simple in order to get you started. The following tutorials will move at a somewhat faster pace. In case you didn't quite catch all of the code, here is the resultant:
+Congratulations! You have just completed the first tutorial. It is simple in order to get you started. The following tutorials will move at a somewhat faster pace. In case you didn't quite catch all of the code, here is the resultant:
 
-Let's keep going.
+Let's keep going!
 
 ```
 #include "..\include\ti84pce.inc"

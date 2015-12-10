@@ -1,2 +1,139 @@
-.highlight .nl { color: #99f } /* Name.Label */
-.hljs{display:block;padding:.5em;background:#fff;color:#000}.method,.hljs-list .hljs-title,.hljs-tag .hljs-title,.setting .hljs-value,.hljs-winutils,.tex .hljs-command,.http .hljs-title,.hljs-request,.hljs-status{color:#008}.hljs-envvar,.tex .hljs-special{color:#660}.hljs-string{color:#3c3}.hljs-tag .hljs-value,.hljs-cdata,.hljs-filter .hljs-argument,.hljs-attr_selector,.apache .hljs-cbracket,.hljs-date,.hljs-regexp{color:#080}.hljs-variable{color:#3f6e74}.css .hljs-tag,.hljs-rules .hljs-property,.hljs-pseudo,.hljs-subst{color:#000}.css .hljs-class,.css .hljs-id{color:#9b703f}.hljs-value .hljs-important{color:#f70;font-weight:bold}.hljs-rules .hljs-keyword{color:#c5af75}.hljs-annotation,.apache .hljs-sqbracket,.nginx .hljs-built_in{color:#9b859d}.hljs-preprocessor,.hljs-preprocessor *,.hljs-pragma{color:#c4a90d}.tex .hljs-formula{background-color:#eee;font-style:italic}.diff .hljs-header,.hljs-chunk{color:gray;font-weight:bold}.diff .hljs-change{background-color:#bccff9}.hljs-addition{background-color:#baeeba}.hljs-deletion{background-color:#ffc8bd}.hljs-comment .hljs-yardoctag{font-weight:bold}.method .hljs-id{color:#000}dl.codebox code,code.code{color:#fff;background-color:#3d3d3d;font-family:monospace}.hljs-literal{color:#6ff}.hljs-keyword,.nginx .hljs-title{color:#66afff;font-weight:bold}.hljs-sub .hljs-identifier,.hljs-pi,.hljs-tag,.hljs-tag .hljs-keyword,.hljs-decorator,.ini .hljs-title,.hljs-shebang,.hljs-prompt,.hljs-hexcolor,.hljs-rules .hljs-value,.css .hljs-value .hljs-number,.hljs-symbol,.hljs-symbol .hljs-string,.hljs-number,.css .hljs-function,.clojure .hljs-title,.clojure .hljs-built_in,.hljs-function .hljs-title,.coffeescript .hljs-attribute{color:#ffb838}.hljs-class .hljs-title,.haskell .hljs-type,.smalltalk .hljs-class,.hljs-javadoctag,.hljs-yardoctag,.hljs-phpdoc,.hljs-typename,.hljs-tag .hljs-attribute,.hljs-doctype,.hljs-class .hljs-id,.hljs-built_in,.setting,.hljs-params,.clojure .hljs-attribute{color:#ff9696}.hljs-comment,.hljs-template_comment,.hljs-javadoc,.hljs-comment *{color:#888;font-style:italic}code.hljs span.hljs-comment.line-number{width:25px;display:inline-block;text-align:right;color:#999;background-color:#474747;padding:0 3px;margin-right:7px;margin-left:-5px}code.hljs span.hljs-comment.line-number:before{content:attr(data-line)}dl.codebox code.hljs[data-lines-done="true"] span:first-child{padding-top:5px;margin-top:-5px}dl.codebox code.hljs[data-lines-done="true"] span:last-child{padding-bottom:5px;margin-bottom:-5px}
+.highlight .nl {
+    color: #99f
+}
+
+/* Name.Label */
+.hljs {
+    display: inline-block;
+    padding: .5em;
+    color: #000
+}
+
+.method,.hljs-list .hljs-title,.hljs-tag .hljs-title,.setting .hljs-value,.hljs-winutils,.tex .hljs-command,.http .hljs-title,.hljs-request,.hljs-status {
+    color: #008
+}
+
+.hljs-envvar,.tex .hljs-special {
+    color: #660
+}
+
+.hljs-string {
+    color: #3c3
+}
+
+.hljs-tag .hljs-value,.hljs-cdata,.hljs-filter .hljs-argument,.hljs-attr_selector,.apache .hljs-cbracket,.hljs-date,.hljs-regexp {
+    color: #080
+}
+
+.hljs-variable {
+    color: #3f6e74
+}
+
+.css .hljs-tag,.hljs-rules .hljs-property,.hljs-pseudo,.hljs-subst {
+    color: #000
+}
+
+.css .hljs-class,.css .hljs-id {
+    color: #9b703f
+}
+
+.hljs-value .hljs-important {
+    color: #f70;
+    font-weight: bold
+}
+
+.hljs-rules .hljs-keyword {
+    color: #c5af75
+}
+
+.hljs-annotation,.apache .hljs-sqbracket,.nginx .hljs-built_in {
+    color: #9b859d
+}
+
+.hljs-preprocessor,.hljs-preprocessor *,.hljs-pragma {
+    color: #c4a90d
+}
+
+.tex .hljs-formula {
+    background-color: #eee;
+    font-style: italic
+}
+
+.diff .hljs-header,.hljs-chunk {
+    color: gray;
+    font-weight: bold
+}
+
+.diff .hljs-change {
+    background-color: #bccff9
+}
+
+.hljs-addition {
+    background-color: #baeeba
+}
+
+.hljs-deletion {
+    background-color: #ffc8bd
+}
+
+.hljs-comment .hljs-yardoctag {
+    font-weight: bold
+}
+
+.method .hljs-id {
+    color: #000
+}
+
+dl.codebox code,code.code {
+    color: #fff;
+    background-color: #3d3d3d;
+    font-family: monospace
+}
+
+.hljs-literal {
+    color: #ac4142;
+    font-weight: bold
+}
+
+.hljs-keyword,.nginx .hljs-title {
+    color: #66afff;
+    font-weight: bold
+}
+
+.hljs-sub .hljs-identifier,.hljs-pi,.hljs-tag,.hljs-tag .hljs-keyword,.hljs-decorator,.ini .hljs-title,.hljs-shebang,.hljs-prompt,.hljs-hexcolor,.hljs-rules .hljs-value,.css .hljs-value .hljs-number,.hljs-symbol,.hljs-symbol .hljs-string,.hljs-number,.css .hljs-function,.clojure .hljs-title,.clojure .hljs-built_in,.hljs-function .hljs-title,.coffeescript .hljs-attribute {
+    color: #ffb838
+}
+
+.hljs-class .hljs-title,.haskell .hljs-type,.smalltalk .hljs-class,.hljs-javadoctag,.hljs-yardoctag,.hljs-phpdoc,.hljs-typename,.hljs-tag .hljs-attribute,.hljs-doctype,.hljs-class .hljs-id,.hljs-built_in,.setting,.hljs-params,.clojure .hljs-attribute {
+    color: #ff9696
+}
+
+.hljs-comment,.hljs-template_comment,.hljs-javadoc,.hljs-comment * {
+    color: #888;
+    font-style: italic
+}
+
+code.hljs span.hljs-comment.line-number {
+    width: 25px;
+    display: inline-block;
+    text-align: right;
+    color: #999;
+    background-color: #474747;
+    padding: 0 3px;
+    margin-right: 7px;
+    margin-left: -5px
+}
+
+code.hljs span.hljs-comment.line-number:before {
+    content: attr(data-line)
+}
+
+dl.codebox code.hljs[data-lines-done="true"] span:first-child {
+    padding-top: 5px;
+    margin-top: -5px
+}
+
+dl.codebox code.hljs[data-lines-done="true"] span:last-child {
+    padding-bottom: 5px;
+    margin-bottom: -5px
+}

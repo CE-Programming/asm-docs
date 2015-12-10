@@ -13,7 +13,7 @@
   <script src="{{ site.baseurl }}/public/js/highlighter.min.js"></script>
   <script>
       hljs.configure({"useBR":false});
-      Array.prototype.forEach.call(document.querySelectorAll('div.highlight pre code'), function(el) {
+      Array.prototype.forEach.call(document.querySelectorAll('code'), function(el) {
           el.className = "";
           hljs.highlightBlock(el);
       });

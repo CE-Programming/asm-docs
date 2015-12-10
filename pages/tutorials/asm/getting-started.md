@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Getting Started
-permalink: /tutorials/asm/getting-started
+permalink: /tutorials/asm/getting-started/
 ---
 
 The tutorials in this guide assume that you have a decent knowledge of eZ80 assembly. However, if you have no idea where to begin, you will first want to begin with the updated version of [**Asm in 28 Days**](http://media.taricorp.net/83pa28d/lesson/toc.html#lessons), and then introduce yourself to the small changes with the new eZ80 processor, located [**here**]({{site.baseurl}}/tutorials/asm/ez80-diff).

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Creating C/ASM libraries
-permalink: /tutorials/asm/lib-creation
+permalink: /tutorials/asm/lib-creation/
 ---
 
 If you are looking to create an ASM or C library, this is the place! Simply follow the simple steps below.

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Your first CE C program
-permalink: /tutorials/c/gettingstarted.html
+permalink: /tutorials/c/getting-started
 ---
 
 The tutorials in this guide assume that you have a basic knowledge of C. If that is not the case, you'll be able to find C tutorials easily on Google :)

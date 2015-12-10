@@ -1,7 +1,7 @@
 ---
 layout: page
 title: ASM Environment Setup
-permalink: /setup/asmsetup.html
+permalink: /setup/asm-setup
 ---
 
 Welcome! Here you will find the necessary tools for programming in eZ80 assembly. Be sure to follow along carefully so you can be up and ready in no time.
@@ -31,4 +31,4 @@ Place spasm-ng into the *tools* directory, and be sure to rename it to **spasm.e
 Now you are ready to begin your journey into programming in assembly!
 
 Let us begin with the first tutorial.
-1. [Getting started]({{ site.baseurl }}/tutorials/asm/gettingstarted.html)
+1. [Getting started]({{ site.baseurl }}/tutorials/asm/getting-started)

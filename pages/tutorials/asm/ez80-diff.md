@@ -1,7 +1,7 @@
 ---
 layout: page
 title: eZ80 Differences
-permalink: /tutorials/asm/ez80diff.html
+permalink: /tutorials/asm/ez80-diff
 ---
 
 The tutorials in this guide assume that you have a decent knowledge of eZ80 assembly. However, if you have no idea where to begin, you will first want to begin with the updated version of [**Asm in 28 Days**](http://media.taricorp.net/83pa28d/lesson/toc.html#lessons).

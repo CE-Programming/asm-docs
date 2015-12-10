@@ -1,7 +1,7 @@
 ---
 layout: page
 title: ASM Environment Setup
-permalink: /setup/asm-setup
+permalink: /setup/asm-setup/
 ---
 
 Welcome! Here you will find the necessary tools for programming in eZ80 assembly. Be sure to follow along carefully so you can be up and ready in no time.

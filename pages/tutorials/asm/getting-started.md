@@ -107,7 +107,7 @@ Once we end our key loop, we then need to do some common cleanup in order to pro
 
 Congratulations! You have just completed the first tutorial. It is simple in order to get you started. The following tutorials will move at a somewhat faster pace. In case you didn't quite catch all of the code, here is the resultant:
 
-Let's keep going!
+Let's keep going! [**Tutorial 2: The Keypad**]({{site.baseurl}}/tutorials/asm/the-keypad/)
 
 ```
 #include "..\include\ti84pce.inc"

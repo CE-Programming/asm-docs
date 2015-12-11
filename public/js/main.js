@@ -1,5 +1,7 @@
-// any link that is not part of the current domain is modified
+// Automatic table-of-content
+$('#toc').toc();
 
+// any link that is not part of the current domain is modified
 (function() {
   var links = document.links;
   for (var i = 0, linksLength = links.length; i < linksLength; i++) {

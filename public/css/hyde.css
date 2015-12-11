@@ -66,7 +66,7 @@ html {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 18rem;
+    width: 15rem;
     text-align: left;
   }
 }
@@ -118,6 +118,10 @@ a.sidebar-nav-item:focus {
     bottom: 0rem;
     left:   1rem;
   }
+  div.sidebar div.container {
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
 }
 
 
@@ -135,18 +139,31 @@ a.sidebar-nav-item:focus {
 @media (min-width: 48em) {
   .content {
     max-width: 40rem;
-    margin-left: 20rem;
+    margin-left: 17rem;
     margin-right: 2rem;
   }
 }
 
-@media (min-width: 64em) {
+@media (min-width: 1150px) and (max-width: 1250px) {
   .content {
-    margin-left: 22rem;
-    margin-right: 4rem;
+    margin-left: 16rem;
+    margin-right: 11rem;
   }
 }
 
+@media (min-width: 1250px) {
+  .content {
+    margin-left: 16rem;
+    margin-right: 11rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .content {
+    margin-left: 18rem;
+    margin-right: 11rem;
+  }
+}
 
 /*
  * Reverse layout

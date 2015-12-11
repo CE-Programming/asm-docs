@@ -178,8 +178,8 @@ pre code {
   color: inherit;
   background-color: transparent;
   max-height: 800px;
-  overflow-x: auto;
-  overflow-y: scroll;
+  overflow: auto;
+  width: 100%;
 }
 
 /* Pygments via Jekyll */

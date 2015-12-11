@@ -114,7 +114,7 @@ div.highlight span.codeSelector {
     height: 100%;
     position: fixed;
     background: #444;
-    box-shadow: inset -5px 0 5px 0px #000;
+    box-shadow: inset 5px 0 5px 0px #000;
     width: 11rem;
     padding-top: 20px;
     color: #fff;
@@ -127,7 +127,7 @@ div.highlight span.codeSelector {
 }
 
 #toc li {
-    padding: 5px 10px;
+    padding: 5px 15px;
 }
 
 #toc a {
@@ -137,14 +137,14 @@ div.highlight span.codeSelector {
 }
 
 #toc .toc-h2 {
-    padding-left: 20px;
+    padding-left: 25px;
 }
 
 #toc .toc-h3 {
-    padding-left: 30px;
+    padding-left: 35px;
 }
 
 #toc .toc-active {
     background: #336699;
-    box-shadow: inset -5px 0px 10px -5px #000;
+    box-shadow: inset 9px 0px 10px -5px #000;
 }

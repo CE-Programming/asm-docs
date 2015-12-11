@@ -1,5 +1,7 @@
 // Automatic table-of-content
-$('#toc').toc();
+$('#toc').toc({
+    'container': 'div.content div.page'
+});
 
 // any link that is not part of the current domain is modified
 (function() {

@@ -5,8 +5,9 @@
 /* Name.Label */
 .hljs {
     display: inline-block;
-    padding: .5em;
-    color: #000
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    color: #000;
 }
 
 .method,.hljs-list .hljs-title,.hljs-tag .hljs-title,.setting .hljs-value,.hljs-winutils,.tex .hljs-command,.http .hljs-title,.hljs-request,.hljs-status {

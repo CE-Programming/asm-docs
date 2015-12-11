@@ -106,7 +106,7 @@ h4, h5, h6 {
 /* Body text */
 p {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: .75rem;
 }
 
 strong {
@@ -153,7 +153,7 @@ pre {
   font-family: Menlo, Monaco, "Courier New", monospace;
 }
 code {
-  padding: .25em .5em;
+  padding: .25em .3em;
   font-size: 85%;
   color: #bf616a;
   background-color: #f9f9f9;
@@ -184,11 +184,15 @@ pre code {
 
 /* Pygments via Jekyll */
 .highlight {
+  position: relative;
   margin-bottom: 1rem;
   border-radius: 4px;
 }
 .highlight pre {
   margin-bottom: 0;
+  padding: .3rem;
+  padding-bottom: 0;
+  padding-left: .75rem;
 }
 
 /* Gist via GitHub Pages */

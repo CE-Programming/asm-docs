@@ -16,5 +16,11 @@
       Array.prototype.forEach.call(document.querySelectorAll('code'), function(el) {
           el.className = "";
           hljs.highlightBlock(el);
+          var highlightDiv = el.parentNode.parentNode; // div.highlight container
+          if (highlightDiv.className.toLowerCase() === "highlight")
+          {
+              highlightDiv.innerHTML = '<span class="codeSelector" onclick="selectElementContents(this.nextSibling)">Select code</span>'
+                                     + highlightDiv.innerHTML;
+          }
       });
   </script>

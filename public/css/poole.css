@@ -177,6 +177,9 @@ pre code {
   font-size: 100%;
   color: inherit;
   background-color: transparent;
+  max-height: 800px;
+  overflow-x: auto;
+  overflow-y: scroll;
 }
 
 /* Pygments via Jekyll */

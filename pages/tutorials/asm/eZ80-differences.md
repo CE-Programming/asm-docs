@@ -8,6 +8,8 @@ The tutorials in this guide assume that you have a decent knowledge of eZ80 asse
 
 Of course, eZ80 assembly is a little different than what the guide uses through. Most of the ideas are entirely applicable, although the following **must** also be taken into account:
 
+(**Note**): This is simply a quick reference. For more detailed information, see [**here**](http://z80.ukl.me/ez80/notes.html).
+
 * The **bcall()** and **bjump()** macros are no no longer necessary. If you have z80 code that looks like this:
 
 ```asm
@@ -36,5 +38,3 @@ Or something similar, this can simply be replaced with:
  * Example: Z80 code: `or a` -> eZ80 code:  `or a,a`
  * Example: Z80 code: `cp (hl)` -> eZ80 code: `cp a,(hl)`
 * Finally, note that `out` and `in` instructions are completely blocked by the CE ASIC. `out` causes a hard reset, while `in` simply reads garbage. Be aware of this.
-
-The tutorials will also cover some of the more important parts that are unusable now in the ASM in 28 Days tutorial, such as screen drawing and interrupts. If you are unsure of how a tutorial operates, or would like a tutorial written for a certain thing, simply post your question on the GitHub page for this website.

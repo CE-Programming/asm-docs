@@ -114,7 +114,7 @@ div.highlight span.codeSelector {
     height: 100%;
     position: fixed;
     background: #444;
-    box-shadow: inset 5px 0 5px 0px #000;
+    box-shadow: 1px 0 15px -1px #000;
     width: 11rem;
     padding-top: 20px;
     color: #fff;
@@ -146,5 +146,4 @@ div.highlight span.codeSelector {
 
 #toc .toc-active {
     background: #336699;
-    box-shadow: inset 9px 0px 10px -5px #000;
 }

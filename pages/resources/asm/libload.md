@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Keypad Equates
+title: Libraries and LibLoad
 permalink: /resources/asm/libload/
 ---
 
@@ -12,11 +12,11 @@ This page aims to document the setup of libraries and operations performed by Li
 
 Libraries are contained within a single appvar, and consist of 4 main sections: the header, the functions, any dependencies, and finally the code itself.
 
-The following describes the format taken after assembling. If you are looking for how to create libraries, [**this page**]() will guide you.
+The following describes the format taken after assembling. If you are looking for how to create libraries, [**this page**]({{site.baseurl}}/pages/tutorials/asm/lib-creation/) will guide you.
 
 ## The Header
 
-A sample header begins with 2 idendifying bytes:
+A header begins with 2 idendifying bytes:
 
 ```asm
 $C0,$C0
@@ -61,7 +61,7 @@ C3 00 00 00  jp 0
 C3 03 00 00  jp 3
 ```
 
-**Important note:** Since dependencies are resolved as a part of code, they are also considered code. Thus, from before, function offsets are calculated from the start of the dependency table, not the end of it.
+**Important note:** Dependencies are also considered code. Thus, function offsets are calculated from the start of the dependency table, **not** the end of it.
 
 ## The Code
 
@@ -70,15 +70,20 @@ The code of the library is simply whatever the developer decides to add to the l
 
 # Relocation
 
-When the assembler hits a **.r** or **.r2** macro, it stores the current location counter +1 or +2 respectively to the relocation table. The relocation table is then placed after the code section.
+When the assembler encounters a **.r** or **.r2** macro, it stores the current location counter +1 or +2 respectively to the relocation table. The relocation table is then placed after the code section.
 
 After the relocation information is two special words: one which holds an offset pointer to the start of the dependency table, and one that holds the size of the library if it were to be extraceted to RAM.
 
-This size consists of the dependencies+code portions; no header, function, or anything else is included.
+This size consists of the dependencies & code portions; no header, functions, or anything else is included in calculations.
 
 # LibLoad Process
 
 The process taken by LibLoad is breifly summarized in the following flowchart:
 
+(For a more detailed description, continue reading below)
+
 ![LibLoad]({{site.baseurl}}/images/resources/libload/flowchart.png "A.K.A absoulte madness")
 
+# The Launcher
+
+The launcher portion of code is simply a routine that exists within the program that can jump to the first byte of the LibLoad appvar. During this process, LibLoad assumes control over the executing program in order to run its own code.

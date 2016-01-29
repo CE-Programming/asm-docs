@@ -8,7 +8,7 @@ If you are looking to create an ASM or C library, this is the place! Simply foll
 
 # Creation
 
-Navigate into your CE C toolchain installation directory. Inside the *shared_libs* directory, you will find another directory called *template*.
+Navigate into your CE C standard library directory. Inside you will find a directory called *template*.
 
 Create a copy of the *template* directory, and rename it to whatever your library does. For example, if it performs File I/O, call it something like *fileio*
 
@@ -28,7 +28,7 @@ Now, close the *MakeFile*, and open the *template.asm* file, or what you may hav
 ```asm
 #include "../include/relocation.inc"
 
- .libraryName		"TEMPLTE"
+ .libraryName		"TMPLTE"
  .libraryVersion	1
 
  .function "void","sample","void",_sample
@@ -49,10 +49,10 @@ _sample:
  Now, the very first thing you want to do is change this line:
 
 ```asm
- .libraryName		"TEMPLTE"
+ .libraryName		"TMPLTE"
 ```
 
- **Make sure TEMPLTE is changed to the name of your AppVar that you set before in the *LIB* part of the Makefile!**
+ **Make sure TMPLTE is changed to the name of your AppVar that you set before in the *LIB* part of the Makefile!**
 
  The next line, ```.libraryVersion``` tells us which version this library is. If you add a function, it is necessary to update the version. If you simply change a function, or add more features to it, it is not necessary to update the version.
 
@@ -164,16 +164,16 @@ pointer      | 3 bytes       | xx xx xx
 ; Start Library Code
 
 _sample0:
- .r jp _sample2
+ jp _sample2 \.r
 
 _sample1:
- .r call _sample0
+ call _sample0 \.r
  jr _sample0
 
 _sample2:
  ld de,$000000
- .r2	ld (libdata),de
- .r  ld hl,libtext
+ ld (libdata),de \.r
+ ld hl,libtext \.r
  jp _PutS
 
 libtext:
@@ -184,8 +184,7 @@ libdata:
 ; End Library Code
 ```
 
-Note the ```.r``` prefix on instructions. This tells the assembler to add the address to the relocation table, so that is can be position-independent. Do this when you make calls or absolute jumps within your program. Note that relative jumps **do not** require this.
-Its counterpart, ```.r2```, is used when the instruction uses ```ix```, or is { ```ld (imm24),de``` or ```ld (imm24),bc``` }. This is important, so be sure to watch out for it.
+Note the ```\.r``` suffix on instructions. This tells the assembler to add the address to the relocation table, so that is can be position-independent. Do this when you make calls or absolute jumps within your program. Note that relative jumps **do not** require this.
 
 There you are! Now you should be able to write your library in no time at all.
 
@@ -243,8 +242,8 @@ Where *template.h* is the name of the header file you copied.
 
 # Dependencies
 
-TODO
+Dependencies are other libraries that your library relies on. You can simply #include the outputted .asm file from an existing library in this section, or if you only plan to use the a couple or so functions of the library, you can save space by only including the header inforamtion and the jump equate. Recursive libarary dependencies are supported.
 
 # Some important notes
 
-In order to use your library, you must have LibLoad installed, along with your library's binary.
+In order to use your library, you must have LibLoad installed, along with your library's binary. Please note that LibLoad itself is merely a tool that is used to link your library to the users' program.

@@ -26,22 +26,22 @@ SOURCES = template.asm
 Now, close the *MakeFile*, and open the *template.asm* file, or what you may have renamed it to. It should look like this:
 
 ```asm
-#include "../include/relocation.inc"
+#include "..\\include\\relocation.inc"
 
- .libraryName		"TMPLTE"
- .libraryVersion	1
-
- .function "void","sample","void",_sample
-
+ .libraryName		"TMPLTE"	                    ; Name of library
+ .libraryVersion	1		                        ; Version information (1-255)
+ 
+ .function "void","tp_Nop","void",_ret
+ 
  .beginDependencies
  .endDependencies
-
-; Start Library Code
-
-_sample:
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Sample funciton
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+_ret:
+ nop
  ret
-
-; End Library Code
 
  .endLibrary
  ```
@@ -56,7 +56,7 @@ _sample:
 
  The next line, ```.libraryVersion``` tells us which version this library is. If you add a function, it is necessary to update the version. If you simply change a function, or add more features to it, it is not necessary to update the version.
 
- **Note: Newer versions of libraries are *always* expected to be compatible with previous versions.**
+ **Note: Newer versions of libraries are *always* expected to be compatible with previous versions. Please don't be mean to users.**
 
  The lines containing ```.beginDependencies``` and ```.endDependencies``` is where you can use other libraries that you may be dependent on. More information can be found below, under the **Dependencies** heading.
 
@@ -212,16 +212,16 @@ When you assemble your library, a header file is automatically generated for you
   version 1
 ***************************************************/
 
-#ifndef _H_TEMPLTE
-#define _H_TEMPLTE
+#ifndef H_TMPLTE
+#define H_TMPLTE
 
 #pragma asm "include ./asm/libheader.asm"
-#pragma asm "include ./asm/TEMPLTE.asm"
+#pragma asm "include ./asm/TMPLTE.asm"
 
 /***************************************************
-  function: sampleFunc
+  function: tp_Nop
 ***************************************************/
-void sampleFunc(void);
+void tp_Nop(void);
 
 #endif
 ```
@@ -242,7 +242,7 @@ Where *template.h* is the name of the header file you copied.
 
 # Dependencies
 
-Dependencies are other libraries that your library relies on. You can simply #include the outputted .asm file from an existing library in this section, or if you only plan to use the a couple or so functions of the library, you can save space by only including the header inforamtion and the jump equate. Recursive libarary dependencies are supported.
+Dependencies are other libraries that your library relies on. You can simply include the outputted **.asm** file from an existing library in this section, or if you only plan to use a couple or so functions of the library, you can save space by only including the header inforamtion and the jump equates. Recursive libarary dependencies are supported.
 
 # Some important notes
 

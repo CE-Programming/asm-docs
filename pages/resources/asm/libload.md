@@ -70,9 +70,9 @@ The code of the library is simply whatever the developer decides to add to the l
 
 # Relocation
 
-When the assembler encounters a **.r** or **.r2** macro, it stores the current location counter +1 or +2 respectively to the relocation table. The relocation table is then placed after the code section.
+When the assembler encounters a **\.r** macro, it stores the current location counter -3 into the relocation table. The relocation table is then placed after the code section.
 
-After the relocation information is two special words: one which holds an offset pointer to the start of the dependency table, and one that holds the size of the library if it were to be extraceted to RAM.
+After the relocation information is two special data words: one which holds an offset pointer to the start of the dependency table, and one that holds the size of the library if it were to be extraceted to RAM.
 
 This size consists of the dependencies & code portions; no header, functions, or anything else is included in calculations.
 
@@ -87,3 +87,54 @@ The process taken by LibLoad is breifly summarized in the following flowchart:
 # The Launcher
 
 The launcher portion of code is simply a routine that exists within the program that can jump to the first byte of the LibLoad appvar. During this process, LibLoad assumes control over the executing program in order to run its own code.
+
+Here is an example of such launcher code:
+
+```asm
+ ld hl,__libloadappvar
+ call _mov9toop1
+ ld a,%15
+ ld (op1),a
+ 
+__findlibload:
+ call _chkfindsym
+ jp c,__notfound
+ call _chkinram
+ jp nz,__inarc		; if in ram, archive LibLoad and search again
+ call _pushop1
+ call _arc_unarc
+ call _popop1
+ jr __findlibload
+__inarc:
+ ex de,hl
+ ld de,9
+ add hl,de
+ ld e,(hl)
+ add hl,de
+ inc hl
+ inc hl
+ inc hl
+ ld de,__relocationstart
+ jp (hl)		    ; jump to the loader -- it should take care of everything
+__notfound:
+ call _clrscrn
+ call _homeup
+ ld hl,__missingappvar
+ call _puts
+ call _newline
+ jp _getkey
+__relocationstart:	; libraries to be relocated will be placed here for the relocator
+ ; #include "library1.asm"
+ ; #include "library2.asm"
+ ; More libraries as needed
+ ;...
+ 
+;
+; PROGRAM CODE GOES HERE
+;
+
+__missingappvar:
+ db "Need"
+__libloadappvar:
+ db " LibLoad",0
+ ```

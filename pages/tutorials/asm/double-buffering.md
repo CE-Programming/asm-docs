@@ -265,7 +265,7 @@ bufData_2   equ vram+(lcdWidth*lcdHeight)
 
 First, we want to tell the LCD to trigger an interrupt from the state of the LNBUIM bit, which is when the LCD base address can be updated (Halfway through a frame redraw).
 
-This simple code tells the LCD controller to do this be setting the appropriate bit in the mask set/clear register of the LCD.
+This simple code tells the LCD controller to do this by setting the appropriate bit in the mask set/clear register of the LCD.
 
 ```
  ld a,(mpLcdImsc) 

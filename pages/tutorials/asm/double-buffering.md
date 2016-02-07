@@ -51,7 +51,7 @@ Now, we need to write some code that will copy our finished data to the screen. 
 blitScreen:
  ld hl,bufData
  ld de,screenData
- ld bc,(lcdWidth*lcdHeight)-1
+ ld bc,lcdWidth*lcdHeight
  ldir
  ret
 ```
@@ -204,7 +204,7 @@ RedrawScreen:
 blitScreen:
  ld hl,bufData
  ld de,screenData
- ld bc,(lcdWidth*lcdHeight)-1
+ ld bc,lcdWidth*lcdHeight
  ldir
  ret
  

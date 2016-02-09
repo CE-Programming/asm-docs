@@ -12,35 +12,38 @@ Navigate into your CE C standard library directory. Inside you will find a direc
 
 Create a copy of the *template* directory, and rename it to whatever your library does. For example, if it performs File I/O, call it something like *fileio*
 
-Inside of your newly created directory, you will find the *MakeFile*. Open this in your editor, and change the following lines:
+Inside of your newly created directory, you will find the *Makefile*. Open this in your editor, and change the following lines:
 
 ```
-LIB = TEMPLTE
-SOURCES = template.asm
+LIB = TEMPLATE
+SOURCES = template_lib.asm
 ```
 
 **LIB**: The name of the library AppVar that will exist on your calculator. Try to make this somewhat descriptive.
 
-**SOURCES**: This contains the name of the files you wish to use for your library. If you rename the *template.asm* in your directory, you **must** update it here as well.
+**SOURCES**: This contains the name of the files you wish to use for your library. If you rename the *template_lib.asm* in your directory, you **must** update it here as well.
 
-Now, close the *MakeFile*, and open the *template.asm* file, or what you may have renamed it to. It should look like this:
+Now, close the *MakeFile*, and open the *template_lib.asm* file, or what you may have renamed it to. It should look like this:
 
 ```asm
-#include "..\\include\\relocation.inc"
+#include "..\\..\\include\\relocation.inc"
 
- .libraryName		"TMPLTE"	                    ; Name of library
- .libraryVersion	1		                        ; Version information (1-255)
+ .libraryName		"TEMPLATE"          ; Name of library
+ .libraryVersion	1                   ; Version information (1-255)
  
- .function "void","tp_Nop","void",_ret
+ .function "ti_TemplateFunction",_TemplateFunction
  
  .beginDependencies
  .endDependencies
  
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Sample funciton
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-_ret:
- nop
+;-------------------------------------------------------------------------------
+_TemplateFunction:
+; Solves the P=NP problem
+; Arguments:
+;  __frame_arg0 : P
+;  __frame_arg1 : NP
+; Returns:
+;  P=NP
  ret
 
  .endLibrary
@@ -49,10 +52,10 @@ _ret:
  Now, the very first thing you want to do is change this line:
 
 ```asm
- .libraryName		"TMPLTE"
+ .libraryName		"TEMPLATE"
 ```
 
- **Make sure TMPLTE is changed to the name of your AppVar that you set before in the *LIB* part of the Makefile!**
+ **Make sure TEMPLATE is changed to the name of your AppVar that you set before in the *LIB* part of the Makefile!**
 
  The next line, ```.libraryVersion``` tells us which version this library is. If you add a function, it is necessary to update the version. If you simply change a function, or add more features to it, it is not necessary to update the version.
 
@@ -70,48 +73,50 @@ Great, now you are all set up! Let's start with how to program a library. First,
 The syntax for a function is:
 
 ```asm
-.function "{ ret }","{ name }","{ args }",{ label }
+.function "name",label
 ```
 
-**{ ret }**: In C, this is the return type for your function.
-
 **{ name }**: Name of the function that you will use in your C/ASM code.
-
-**{ args }**: In C, this is the list of arguments your function takes.
 
 **{ label }**: The location in your library where your function is.
 
 To insert a new function into your library, just insert a new line right below the previous function. So if you had a library with 3 functions, it would look something like this:
 
+*You can only insert at the end of the list if you have already released a previous version.*
+
 ```asm
-#include "../include/relocation.inc"
+#include "..\\..\\include\\relocation.inc"
 
- .libraryName		"TEMPLTE"
- .libraryVersion	1
-
- .function "void","sampleFunc0","void",_sample0
- .function "void","sampleFunc1","void",_sample1
- .function "void","sampleFunc2","void",_sample2
-
+ .libraryName		"TEMPLATE"          ; Name of library
+ .libraryVersion	1                   ; Version information (1-255)
+ 
+ .function "ti_TemplateFunction1",_TemplateFunction1
+ .function "ti_TemplateFunction2",_TemplateFunction2
+ 
  .beginDependencies
  .endDependencies
-
-; Start Library Code
-
-_sample0:
- ; does things
+ 
+;-------------------------------------------------------------------------------
+_TemplateFunction1:
+; Solves the P=NP problem
+; Arguments:
+;  __frame_arg0 : P
+;  __frame_arg1 : NP
+; Returns:
+;  P=NP
  ret
 
-_sample1:
- ; does things
+;-------------------------------------------------------------------------------
+_TemplateFunction2:
+; Solves the P=NP problem two times in a row
+; Arguments:
+;  __frame_arg0 : P
+;  __frame_arg1 : NP
+; Returns:
+;  P=NP
  ret
-
-_sample2:
- ; does things
  ret
-
-; End Library Code
-
+ 
  .endLibrary
 ```
 
@@ -137,12 +142,14 @@ _sample:
  push ix
   ld ix,0
   add ix,sp
-  ld hl,(ix+6)  ; hl = 30
-  ld de,(ix+9)  ; de = 20
-  ld bc,(ix+12) ; bc = 10
+  ld hl,(ix+__frame_arg0)  ; hl = 30
+  ld de,(ix+__frame_arg1)  ; de = 20
+  ld bc,(ix+__frame_arg2)  ; bc = 10
  pop ix
  ret
 ```
+
+*__frame_argX* are defines that you can use to pull elements off the stack frame. `__frame_arg0` is defined as 6, and each is 3 bytes wide.
 
 Here's a helpful table that lists the sizes and place on the stack for C arguments: (Stack memory goes from **Low** -> **High**)
 
@@ -161,7 +168,7 @@ pointer      | 3 bytes       | xx xx xx
 **Important note**: Because libraries are position-independent, this means that any usage of a ```call```, ```jp```, or absolute location **must** be relocated. The following shows how:
 
 ```asm
-; Start Library Code
+; Some library code...
 
 _sample0:
  jp _sample2 \.r
@@ -200,30 +207,28 @@ Another is a **.lst**, which is simply the listing file for your assembly source
 
 The file **relocation_table** is created if your library uses absolute relocations. You can delete it if you want.
 
-A **.h** file is also generated. Find out more about it below:
-
 # Creating your header file
 
-When you assemble your library, a header file is automatically generated for you. Here's an example one. Header guards are automatically inserted, along with some extra comment space. The *#pragmas* are used by the compiler; I wouldn't worry too much over what they do.
-
+When you assemble your library, a .asm file is generated for you. All you need to do is create the C prototypes for your functions. A sample header might look something like this:
 ```c
-/***************************************************
-  TEMPLTE library header file
-  version 1
-***************************************************/
+/**
+ * @file    TEMPLATE CE C Library
+ * @version 1.0
+ */
 
-#ifndef H_TMPLTE
-#define H_TMPLTE
+#ifndef H_TEMPLATE
+#define H_TEMPLATE
 
-#pragma asm "include ./asm/libheader.asm"
-#pragma asm "include ./asm/TMPLTE.asm"
+#pragma asm "include "libheader.asm""
+#pragma asm "include "TEMPLATE.asm""
+#pragma asm "segment code"
 
-/***************************************************
-  function: tp_Nop
-***************************************************/
-void tp_Nop(void);
+/**
+ * Solves the P=NP problem
+ */
+int ti_TempLateFunction(int p, int np);
 
-#endif
+#endif // H_TEMPLATE
 ```
 
 # Finishing Up

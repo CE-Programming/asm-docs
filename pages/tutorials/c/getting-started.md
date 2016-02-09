@@ -1,32 +1,31 @@
 ---
 layout: page
-title: Your first CE C program
+title: Getting Started
 permalink: /tutorials/c/getting-started/
 ---
 
 The tutorials in this guide assume that you have a basic knowledge of C. If that is not the case, you'll be able to find C tutorials easily on Google.
 
-[ TODO ] : rewrite that following sentence for C  
-Something something copying template to new folder called tutorial_1
+Inside of your C installation directory you will find a folder called `examples`, and inside this folder `demo1`. Open a command window in this folder, and simply type the command *make*.
 
 # Prerequisites
 
-[ TODO ] : talk about the fact that ZDS expects ANSI C (C89), thus some common C99-syntax won't work (give examples, comparisons, etc.)  
-[ TODO ] : warn about ZDS using IY and the `_OS( )` macro workaround, etc.
+The CE C toolchain requires ANSI C (C89), which means that some common C99-syntax won't work. You can find out more about the things in C99 that don't work in C89 [here](https://en.wikipedia.org/wiki/C99#Design).
 
-# The Templates
+For instance, functions which take no arguments must be declared as `rettype name(void);`
 
-[ TODO ] : talk about the [future] multiple templates available from the toolchain folder (or will we put them in this doc repo?)  
-but anyway, we'll start with a simple one here.
+In addition, because the ZDS C Compiler does not save IY and IX when working with functions and loops; you must use the `_OS( )` macro when calling native CE OS functions. For example:
+```c
+    /* Wait for the OS to recieve a keypress */
+    _OS( while(!GetCSC) );
+```
+
+Finally, in order to save space, the prototype for main is: `void main(void);`
+
+# The Libararies
 
 # Introduction
 
-We are first going to [ TODO ]
-
 # The code
 
-[ TODO ]
-
 # Finishing Up
-
-[ TODO ]

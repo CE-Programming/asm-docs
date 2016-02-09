@@ -210,6 +210,7 @@ The file **relocation_table** is created if your library uses absolute relocatio
 # Creating your header file
 
 When you assemble your library, a .asm file is generated for you. All you need to do is create the C prototypes for your functions. A sample header might look something like this:
+
 ```c
 /**
  * @file    TEMPLATE CE C Library

@@ -12,9 +12,11 @@ Inside of your C installation directory you will find a folder called `examples`
 
 The CE C toolchain requires ANSI C (C89), which means that some common C99-syntax won't work. You can find out more about the things in C99 that don't work in C89 [here](https://en.wikipedia.org/wiki/C99#Design).
 
-For instance, functions which take no arguments must be declared as `rettype name(void);`
+For instance, functions which take no arguments must be declared as
+`rettype name(void);`
 
 In addition, because the ZDS C Compiler does not save IY and IX when working with functions and loops; you must use the `_OS( )` macro when calling native CE OS functions. For example:
+
 ```c
     /* Wait for the OS to recieve a keypress */
     _OS( while(!GetCSC) );

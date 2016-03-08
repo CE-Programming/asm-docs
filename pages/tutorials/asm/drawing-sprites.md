@@ -17,8 +17,9 @@ Notice that we want to use the pink color as a transparent color, so that we can
 Now, how do I convert this image to be used in 8bpp mode? Isn't there a palette that I have to use?
 
 To convert your images, you will need this tool:
+https://github.com/MateoConLechuga/ConvPNG/releases
 
-Now, simply place *convimage* within your *tools* directory, which is again located inside of your *CEasm* installation directory.
+Now, simply place *convpng* within your *tools* directory, which is again located inside of your *CEasm* installation directory.
 
 # The Code
 
@@ -27,7 +28,7 @@ Now, we first want to convert this image so we can see how to use it. Copy the a
 Then in the command line, from your *tutorial_4* directory, type:
 
 ```
-..\\tools\\convimage -8z -i mushroomsprite.png
+..\\tools\\convimage -8jz -i mushroomsprite.png
 ```
 
 This will create a new file in the *tutorial_4* directory called *mushroomsprite.asm*. This is the converted data for your sprite, and includes the palette that you can use as well in 8bpp mode.
@@ -108,6 +109,8 @@ SpriteWidthSMC: =$+1
 ```
 
 # Advanced uses of the converter
+
+There are many options available with convpng; try testing different options to see what you can produce.
 
 # Finishing Up
 

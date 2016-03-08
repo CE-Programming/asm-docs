@@ -234,9 +234,7 @@ int ti_TempLateFunction(int p, int np);
 
 # Finishing Up
 
-Great, now your header file should be complete. Now for one of the harder parts. From your base C toolchain installation, copy your header file to *.\include\ce*.
-
-Then copy the newly created **.asm** containing the jump table for your library. into *.\include\ce\asm*.
+Great, now your header file should be complete. Now for one of the harder parts. From your base C toolchain installation, copy your header file and outputted `.asm`
 
 Now, whenever you want to use your libraries functions in your program, simply do:
 
@@ -248,7 +246,7 @@ Where *template.h* is the name of the header file you copied.
 
 # Dependencies
 
-Dependencies are other libraries that your library relies on. You can simply include the outputted **.asm** file from an existing library in this section, or if you only plan to use a couple or so functions of the library, you can save space by only including the header inforamtion and the jump equates. Recursive libarary dependencies are supported.
+Dependencies are other libraries that your library relies on. You can simply include the outputted `.asm` file from an existing library in this section, or if you only plan to use a couple or so functions of the library, you can save space by only including the header inforamtion and the jump equates. Recursive libarary dependencies are supported. Don't forget to use the `\.r` syntax when you make calls to dependencies!
 
 # Some important notes
 

@@ -139,7 +139,7 @@ _cp1555loop:
  inc b
  jr nz,_cp1555loop
 
- call _clearVRAM    ; Set all of VRAM to $FF (white)
+ call _clrscrn     ; Set all of VRAM to $FF (white)
  ld a,lcdbpp8
  ld (mpLcdCtrl),a
 

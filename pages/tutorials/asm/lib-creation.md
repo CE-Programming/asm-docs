@@ -28,15 +28,15 @@ Now, close the *MakeFile*, and open the *template_lib.asm* file, or what you may
 ```asm
 #include "..\\..\\include\\relocation.inc"
 
- .libraryName		"TEMPLATE"          ; Name of library
- .libraryVersion	1                   ; Version information (1-255)
+ .libraryName		"TEMPLATE"   ; Name of library
+ .libraryVersion	1            ; Version information (1-255)
  
  .function "ti_TemplateFunction",_TemplateFunction
  
  .beginDependencies
  .endDependencies
  
-;-------------------------------------------------------------------------------
+;--------------------------------------------------
 _TemplateFunction:
 ; Solves the P=NP problem
 ; Arguments:
@@ -220,14 +220,10 @@ When you assemble your library, a .asm file is generated for you. All you need t
 #ifndef H_TEMPLATE
 #define H_TEMPLATE
 
-#pragma asm "include "libheader.asm""
-#pragma asm "include "TEMPLATE.asm""
-#pragma asm "segment code"
-
 /**
  * Solves the P=NP problem
  */
-int ti_TempLateFunction(int p, int np);
+int ti_TemplateFunction(int p, int np);
 
 #endif // H_TEMPLATE
 ```

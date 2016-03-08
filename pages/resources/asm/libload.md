@@ -39,8 +39,8 @@ Functions are also stored in the library binary as entries in a vector table. A 
 (Note that assembled code is on the left, while the original file is shown on the right)
 
 ```asm
-0F 00 00 -   .function "void","function_1","void",_function_1_label
-1D 00 00 -   .function "void","function_2","void",_function_2_label
+0F 00 00 -   .function "function_1",_function_1_label
+1D 00 00 -   .function "function_2",_function_2_label
 ```
 
 The preceeding bytes simply represent the offset in the library where the function is located.
@@ -55,9 +55,9 @@ A sample library with a single dependency on LIB1 will look like this:
 C0 4C 49 42 
 31 00 -  -   db 0C0h,"LIB1",0
 01 -  -  -   db 1
--  -  -  -  _function_1 equ $
+-  -  -  -  _function_1:
 C3 00 00 00  jp 0
--  -  -  -  _function_2 equ $
+-  -  -  -  _function_2:
 C3 03 00 00  jp 3
 ```
 
@@ -66,7 +66,6 @@ C3 03 00 00  jp 3
 ## The Code
 
 The code of the library is simply whatever the developer decides to add to the library. Some examples include file I/O, and many other things.
-
 
 # Relocation
 

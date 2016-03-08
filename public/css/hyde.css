@@ -33,7 +33,7 @@
  */
 
 html {
-    font-family: 'Hoefler Text', 'Times New Roman', 'Times New Roman', Times, serif 
+    font-family: 'Courier New', Courier, serif;
 }
 @media (min-width: 48em) {
   html {

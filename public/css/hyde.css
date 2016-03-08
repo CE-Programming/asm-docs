@@ -33,7 +33,7 @@
  */
 
 html {
-    font-family: 'Courier New', Courier, serif;
+    font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif; 
 }
 @media (min-width: 48em) {
   html {

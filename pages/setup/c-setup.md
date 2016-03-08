@@ -26,9 +26,11 @@ Now, let's get started!
 
 **A:** Add a SHELL:=cmd.exe to the top line of the Makefile file.
 
+
 **Q:** When I type `make`, is says `command not found`
 
 **A:** Be sure you have added `CEdev/bin` to a PATH variable, and the `CEdev` enviornment varaible points to the CEdev folder.
+
 
 **Q:** I have an error that isn`t described here. Help.
 

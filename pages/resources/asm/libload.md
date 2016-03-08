@@ -91,16 +91,16 @@ The launcher portion of code is simply a routine that exists within the program 
 Here is an example of such launcher code:
 
 ```asm
+__libloadlauncher:
  ld hl,__libloadappvar
  call _mov9toop1
  ld a,%15
  ld (op1),a
- 
 __findlibload:
  call _chkfindsym
  jp c,__notfound
  call _chkinram
- jp nz,__inarc		; if in ram, archive LibLoad and search again
+ jp nz,__inarc
  call _pushop1
  call _arc_unarc
  call _popop1
@@ -115,7 +115,7 @@ __inarc:
  inc hl
  inc hl
  ld de,__relocationstart
- jp (hl)		    ; jump to the loader -- it should take care of everything
+ jp (hl)
 __notfound:
  call _clrscrn
  call _homeup
@@ -123,18 +123,19 @@ __notfound:
  call _puts
  call _newline
  jp _getkey
-__relocationstart:	; libraries to be relocated will be placed here for the relocator
+__relocationstart:
  ; #include "library1.asm"
  ; #include "library2.asm"
- ; More libraries as needed
+ ; More included libraries as needed
  ;...
  
 ;
-; PROGRAM CODE GOES HERE
+; PROGRAM CODE GOES HERE ->
 ;
 
+; Data segments
 __missingappvar:
  db "Need"
 __libloadappvar:
  db " LibLoad",0
- ```
+```

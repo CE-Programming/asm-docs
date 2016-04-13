@@ -96,7 +96,7 @@ To insert a new function into your library, just insert a new line right below t
  .beginDependencies
  .endDependencies
  
-;-------------------------------------------------------------------------------
+;--------------------------------------------------
 _TemplateFunction1:
 ; Solves the P=NP problem
 ; Arguments:
@@ -106,7 +106,7 @@ _TemplateFunction1:
 ;  P=NP
  ret
 
-;-------------------------------------------------------------------------------
+;--------------------------------------------------
 _TemplateFunction2:
 ; Solves the P=NP problem two times in a row
 ; Arguments:

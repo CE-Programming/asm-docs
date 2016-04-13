@@ -34,4 +34,4 @@ Now, let's get started!
 
 **Q:** I have an error that isn`t described here. Help.
 
-**A:** Be sure that the installation directory is close to your root drive, and there are no spaces in the path name. You can also check under the external links on the sidebar to browse forums and ask questions.
+**A:** Be sure that the installation directory is close to your root drive, and there are no spaces in the path name. In addition, make sure you have defined both the CEDEV and PATH variables correctly. You can also check under the external links on the sidebar to browse forums and ask questions.

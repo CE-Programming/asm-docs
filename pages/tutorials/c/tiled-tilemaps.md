@@ -18,7 +18,7 @@ Next, you will have to add the image tiles you wish to use for your tilemap. You
 ![New Tilemap]({{site.baseurl}}/images/tutorials/c/tiled/image3.png "Creating a new tilemap")
 
 It will then ask you for an image of where to pull your tiles. Select the image you wish to use; keep in mind that ConvPNG can only handle images without any padding around tiles.
-![New Tilemap]({{site.baseurl}}/images/tutorials/c/tiled/image4.png "Creating a new tilemap
+![New Tilemap]({{site.baseurl}}/images/tutorials/c/tiled/image4.png "Creating a new tilemap")
 
 You can then choose the transparent color you wish to use when working with multiple layer tilemaps.
 ![New Tilemap]({{site.baseurl}}/images/tutorials/c/tiled/image5.png "Creating a new tilemap")

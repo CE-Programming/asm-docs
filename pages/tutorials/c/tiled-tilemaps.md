@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Getting Started
-permalink: /tutorials/c/getting-started/
+title: Creating Tilemaps with Tiled
+permalink: /tutorials/c/tiled-tilemaps/
 ---
 
 # Creating Tilemaps with Tiled

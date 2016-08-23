@@ -56,6 +56,6 @@ The last step is to make it possible to use the tilemap in your code. Assuming y
 ![Building Tilemap]({{site.baseurl}}/images/tutorials/c/tiled/image12.png "Awesomeness")
 
 ConvTile will then create two files; a .c and .h file. You can #include the .h file to use the outputted tilemap arrays in your program.
-![Building Tilemap]({{site.baseurl}}/images/tutorials/c/tiled/image12.png "#include \"pokemon_tilemaps.h\"")
+![Building Tilemap]({{site.baseurl}}/images/tutorials/c/tiled/image13.png "#include "pokemon_tilemaps.h"")
 
 If you have any questions, feel free to post on GitHub. Enjoy!

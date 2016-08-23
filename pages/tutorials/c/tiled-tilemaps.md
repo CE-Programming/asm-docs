@@ -4,8 +4,6 @@ title: Creating Tilemaps with Tiled
 permalink: /tutorials/c/tiled-tilemaps/
 ---
 
-# Creating Tilemaps with Tiled
-
 Tiled is a nifty tool that you can use to create advanced tilemaps for your programs. You will need to download and install it from [**here**](http://www.mapeditor.org/) first. Once Tiled is installed, start it up and let's get going.
 
 # The First Steps

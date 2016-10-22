@@ -4,7 +4,7 @@ title: Creating Your First Program
 permalink: /tutorials/c/first-program/
 ---
 
-This tutorial will help you `make` your first progran and give some tips!
+This tutorial will help you `make` your first program and give some tips!
 
 # Creating a Program Directory
 
@@ -16,7 +16,7 @@ Now, open up CEdev/examples and copy the template. Paste the template into your 
 
 The makefile holds the base information for you program, the name, and your compile options. Follow the steps below to set it up.
 
-- Open the file labled `makefile` with Notepad++ or your preferred editor.
+- Open the file labeled `makefile` with Notepad++ or your preferred editor.
 
 - Edit `TARGET ?= DEMOT` and replace `DEMOT` with your program name.
 
@@ -44,13 +44,15 @@ You now have a program that opens, initializes the graphics, then closes! (Once 
 
 # Making your Program (Compiling)
 
-You have your code written, but you wnat to test out your program? Then this is the right command for you! It compiles your program, and if succesful, creates a `*.8xp` in the /bin/ folder!
+You have your code written, but you want to test out your program? Then this is the right command for you! It compiles your program, and if successful, creates a `*.8xp` in the /bin/ folder!
 
 - To make on windows, go [here](https://www.cemetech.net/learn/C_SDK_Tips_and_Tricks#.22Making.22_the_program_2).
 - To make on linux and mac, go [here](https://www.cemetech.net/learn/C_SDK_Tips_and_Tricks#.22Making.22_the_program).
 
-Go ahead and send the file, `*.8xp`, to CEmu or your calculator, be sure you ahve the C libraries installed, and run it with `Asm(prgmPROGRAM`!
+Go ahead and send the file, `*.8xp`, to CEmu or your calculator, be sure you have the C libraries installed, and run it with `Asm(prgmPROGRAM`!
 
 # Finishing Up
 
 You should have just created, compiled, and tested a program that you made! Now that you have this knowledge, have fun creating programs and games!
+
+

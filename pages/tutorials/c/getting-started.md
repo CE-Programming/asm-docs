@@ -27,4 +27,6 @@ These will be dynamically linked into your program at runtime, and only the func
 
 # Finishing Up
 
-And that's all there is to it! Now it's just off to find some good C tutorials, or browse around some example code, references, and tutorials available here.
+And that's all there is to it! Now it's just off to find some good C tutorials, or browse around some example code, references, and tutorials available here. (If you are unsure where to start, check out the next tutorial below)
+
+Next: [Creating your first program]({{ site.baseurl }}/tutorials/c/first-program)

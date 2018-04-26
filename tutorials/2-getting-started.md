@@ -18,7 +18,7 @@ format ti executable 'DEMO'
 
 ## Introduction
 
-We are first going to understand how the CE LCD functions. To get things to display on the screen, the easiest thing to do is to write to the LCD memory (commonly reffered to as VRAM/GRAM, starting at address 0xD40000). VRAM is 320*240*2 (153600) bytes in size.
+We are first going to understand how the CE LCD functions. To get things to display on the screen, the easiest thing to do is to write to the LCD memory (commonly reffered to as VRAM/GRAM, starting at address 0xD40000). VRAM is 320\*240\*2 (153600) bytes in size.
 
 However, the LCD supports countless permutations of operation. The OS normally operates in [16 bits per pixel (bpp)](https://en.wikipedia.org/wiki/High_color), or 16-bit high color with green containing the extra bit. However, while 16bpp is useful for full-color graphics and things, it tends to be quite slow when doing intensive graphical effects, as it must draw 153600 bytes per frame. This tutorial advocates for using palettized [8 bits per pixel](https://en.wikipedia.org/wiki/8-bit_color), where the color data is arranged in 1555 color, where 1=intensity, and 555=rgb respectively in the LCD palette memory. This not only makes it easy to compute the x and y offset for a pixel, but also leads to improved drawing performance, and a possibility for double buffering.
 

@@ -14,7 +14,7 @@ For more help, these links may be helpful:
 
 [eZ80 opcode list](http://mdfs.net/Docs/Comp/eZ80/OpList)
 
-[eZ80 CPU documentation](http://z80.ukl.me/ez80/notes.html">http://z80.ukl.me/ez80/notes.html)
+[eZ80 CPU documentation](http://z80.ukl.me/ez80/notes.html)
 
 [CE documentation](http://wikiti.brandonw.net/index.php?title=Calculator_Documentation#TI-84_Plus_CE.5B-T.5D.2C_TI-83_Premium_CE)
 
@@ -22,7 +22,7 @@ For more help, these links may be helpful:
 
 [CE RAM address space layout](http://wikiti.brandonw.net/index.php?title=Category:84PCE:RAM:By_Address)
 
-[TI-Planet's Project Builder, featuring an online CE C IDE](https://tiplanet.org/pb/">https://tiplanet.org/pb/)
+[TI-Planet's Project Builder, featuring an online CE C IDE](https://tiplanet.org/pb/)
 
 ### More Help
 

@@ -82,7 +82,7 @@ Then, each bit is also given an equate, which follows the pattern: ```kbit{keyna
 
 So, the graph key bit name would be ```kbitGrah```, and others such as ```kbitAlpha```, ```kbdComma```, and ```kbitLParen```.
 
-You can find all the available keypad equates [**here**](https://github.com/CE-Programming/documentation/appendix/keypad-equates.md).
+You can find all the available keypad equates [**here**](../appendix/keypad-equates.md).
 
 Now, we want to move the square around using the arrow keys. From the above table, we can see the arrow keys exist in ```kbdG7```. So, we just need to read ```kbdG7```, and then check the bit pattern.
 
@@ -242,11 +242,11 @@ _Create1555Palette:
 .cp1555Loop:
 	ld	d,b
 	ld	a,b
-	and	a,%11000000
+	and	a,192
 	srl	d
 	rra
 	ld	e,a
-	ld	a,%00011111
+	ld	a,31
 	and	a,b
 	or	a,e
 	ld	(hl),a
@@ -256,7 +256,7 @@ _Create1555Palette:
 	inc	b
 	jr	nz,.cp1555Loop
 
-	call	_boot_CearVRAM	; set all of vram to index 255 (white)
+	call	_boot_ClearVRAM	; set all of vram to index 255 (white)
 	ld	a,lcdbpp8
 	ld	(mpLcdCtrl),a	; enable 8bpp mode
 

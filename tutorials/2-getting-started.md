@@ -1,7 +1,7 @@
 
 ## Getting Started
 
-The tutorials in this guide assume that you have a decent knowledge of eZ80 assembly. However, if you have no idea where to begin, you will first want to begin with the updated version of [**Asm in 28 Days**](http://media.taricorp.net/83pa28d/lesson/toc.html#lessons), and then introduce yourself to the small changes with the new eZ80 processor, located [**here**](https://github.com/CE-Programming/documentation/appendix/eZ80-differences.md).
+The tutorials in this guide assume that you have a decent knowledge of eZ80 assembly. However, if you have no idea where to begin, you will first want to begin with the updated version of [**Asm in 28 Days**](http://media.taricorp.net/83pa28d/lesson/toc.html#lessons), and then introduce yourself to the small changes with the new eZ80 processor, located [**here**](../appendix/eZ80-differences.md).
 
 ## The Template
 
@@ -42,11 +42,11 @@ _Create1555Palette:
 .cp1555Loop:
 	ld	d,b
 	ld	a,b
-	and	a,%11000000
+	and	a,192
 	srl	d
 	rra
 	ld	e,a
-	ld	a,%00011111
+	ld	a,31
 	and	a,b
 	or	a,e
 	ld	(hl),a
@@ -57,11 +57,11 @@ _Create1555Palette:
 	jr	nz,.cp1555Loop
 ```
 
-![1555 Palette](https://github.com/CE-Programming/documentation/appendix/rgbhlpalette.png "Special thanks to Shaun 'Merthsoft' McFall for generating this image")
+![1555 Palette](../appendix/rgbhlpalette.png "Special thanks to Shaun 'Merthsoft' McFall for generating this image")
 Now that the palette is set to the above image, we should clear the screen so that it doesn't cause weird graphical effects when switching modes. Then we can enable 8bpp mode. The code below will accomplish both of these tasks:
 
 ```asm
-	call	_boot_CearVRAM		; set all of vram to index 255 (white)
+	call	_boot_ClearVRAM		; set all of vram to index 255 (white)
 	ld	a,lcdbpp8
 	ld	(mpLcdCtrl),a		; enable 8bpp mode
 ```
@@ -117,11 +117,11 @@ _Create1555Palette:
 .cp1555Loop:
 	ld	d,b
 	ld	a,b
-	and	a,%11000000
+	and	a,192
 	srl	d
 	rra
 	ld	e,a
-	ld	a,%00011111
+	ld	a,31
 	and	a,b
 	or	a,e
 	ld	(hl),a

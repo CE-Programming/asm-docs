@@ -10,7 +10,7 @@ Now, the two main methods of double buffering are known as **blitting** and **pa
 
 ## Blitting
 
-Taking the finished code from [**tutorial 2**](https://github.com/CE-Programming/documentation/tutorials/3-direct-key-input.md), let's modify it to use the first method of double buffering, which is simply copying our drawn data to the screen.
+Taking the finished code from [**tutorial 2**](3-direct-key-input.md), let's modify it to use the first method of double buffering, which is simply copying our drawn data to the screen.
 
 So, rather than drawing to the start of VRAM, since we are in 8bpp mode, we can use VRAM+(320*240) as our back buffer.
 

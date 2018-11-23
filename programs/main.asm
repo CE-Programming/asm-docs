@@ -1,12 +1,12 @@
-include 'ez80.inc'
-include 'ti84pceg.inc'
-include 'tiformat.inc'
+include 'include/ez80.inc'
+include 'include/ti84pceg.inc'
+include 'include/tiformat.inc'
 format ti executable 'DEMO'
 
-	call	_HomeUp
+	call	ti.HomeUp
 	ld	hl,hello
-	call	_PutS
-	jp	_NewLine
+	call	ti.PutS
+	jp	ti.NewLine
 
 hello:
-	db "Hello", 0
+	db "Hello World!", 0

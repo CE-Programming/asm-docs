@@ -12,8 +12,12 @@ We use the latest version of fasmg for development, adapted by jacobly0 for the 
 
 A provided `main.asm` demo file has been placed in the `programs` directory. This is the best place to add all the code in the following tutorials.
 
-To assemble the main file, simply type the following command in the command window, from within the `programs/tools` directory (where fasmg is located):
+To assemble the main file, simply type the following command in the command window, from within the `programs` directory (where main.asm is located):
 
-    ./fasmg ../main.asm
+    .\fasmg.exe main.asm DEMO.8xp
 
-And the output binary (8xp) file will be placed in the same directory as the source file.
+If you are on linux, the command would look like this:
+
+    ./fasmg-linux main.asm DEMO.8xp
+
+And the output binary (DEMO.8xp) file will be placed in the same directory as the source file.

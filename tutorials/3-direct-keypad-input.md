@@ -12,34 +12,34 @@ Note that we have also set up our default palette.
 
 ```asm
 ;----------------------------------------
-; DrawRectangle
+; draw_rectangle
 ; inputs:
 ;         de = x
 ;          l = y
 ;         bc = width
 ;          a = height
 ;  rcolor = color of rectangle
-;  this routine can be greatly optimized
+;  this routine can be greatly optimized!
 ;----------------------------------------
-DrawRectangle:
-	ld	h,320/2		; h=160
-	mlt	hl		; 160*y
-	add	hl,hl		; hl*2
-	add	hl,de		; add x coordinate
-	ld	de,vRam
-	add	hl,de		; offset vRam
-	dec	bc		; for ldir
+draw_rectangle:
+	ld	h,ti.lcdWidth / 2	; h = 160
+	mlt	hl			; 160 * y
+	add	hl,hl			; hl * 2
+	add	hl,de			; add x coordinate
+	ld	de,ti.vRam
+	add	hl,de			; offset vRam
+	dec	bc			; for ldir
 .loop:
-rcolor := $+1
 	ld	(hl),0
+.color := $ - 1
 	push	hl
 	pop	de
 	inc	de
 	push	bc
-	ldir			; draw line
+	ldir				; draw line
 	pop	bc
-	ld	de,320
-	add	hl,de		; move down
+	ld	de,ti.lcdWidth
+	add	hl,de			; move down
 	sbc	hl,bc
 	dec	a
 	jr	nz,.loop
@@ -52,13 +52,13 @@ Now that we have the code to draw a rectangle, we need to understand how the key
 
 ```asm
 	di
-	ld	hl,DI_Mode	; register for keypad mode
-	ld	(hl),2		; set single scan mode
+	ld	hl,ti.DI_Mode		; register for keypad mode
+	ld	(hl),2			; set single scan mode
 
 	xor	a,a
-ScanWait:
-	cp	a,(hl)		; Wait for Idle mode
-	jr	nz,ScanWait
+scan_wait:
+	cp	a,(hl)			; wait for keypad idle mode
+	jr	nz,scan_wait
 
 ; Read data registers here as needed
 ```
@@ -89,83 +89,46 @@ Now, we want to move the square around using the arrow keys. From the above tabl
 Here's some code that reads the keypad, and then accordingly executes the correct routine to move the square:
 
 ```asm
-	ld	a,(kbdG6)
-	bit	kbitClear,a
-	jp	nz,ExitPrgm	; exit the program if [CLEAR] is pressed
-
-	ld	a,(kbdG7)
-	push	af
- 	bit	kbitUp,a
- 	call	nz,RequestUp     ; is [UP] pressed?
-
-	pop	af
-	push	af
-	bit	kbitRight,a
-	call	nz,RequestRight	; is [RIGHT] pressed?
-
-	pop	af
-	push	af
-	bit	kbitLeft,a
-	call	nz,RequestLeft	; is [LEFT] pressed?
-
-	pop	af
-	push	af
-	bit	kbitDown,a
-	call	nz,RequestDown	; is [DOWN] pressed?
-
- 	pop	af
-	or	a,a
-	call	nz,RedrawScreen	; if any key is pressed, update the screen
-```
-
- Now, what do all of the ```Request{xxxx}``` routines look like? Here's one way of implementing it:
-
-```asm
-RequestUp:
-	ld	a,(yPos)
+request_up:
+	ld	a,0
+yPos := $ - 1
 	dec	a
-	ret	z		; return if @ 1
+	ret	z			; return if @ 1
 	ld	(yPos),a
 	ret
 
-RequestRight:
-	ld	hl,(xPos)
+request_right:
+	ld	hl,0
+xPos := $ - 3
 	inc	hl
-	ld	de,lcdWidth
+	ld	de,ti.lcdWidth
 	or	a,a
 	sbc	hl,de
 	add	hl,de
-	ret	z		; return if @ 319
+	ret	z			; return if @ 319
 	ld	(xPos),hl
 	ret
 
-RequestLeft:
+request_left:
 	ld	hl,(xPos)
 	dec	hl
 	add	hl,de
 	or	a,a
 	sbc	hl,de
-	ret	z		; return if @ 1
+	ret	z			; return if @ 1
 	ld	(xPos),hl
 	ret
 
-RequestDown:
+request_down:
 	ld	a,(yPos)
 	inc	a
-	cp	lcdHeight
-	ret	z		; return if @ 239
+	cp	a,ti.lcdHeight
+	ret	z			; return if @ 239
 	ld	(yPos),a
 	ret
 ```
 
-But wait. Where are `yPos` and `xPos` located? Again, [**WikiTI**](http://wikiti.brandonw.net/index.php?title=Category:84PCE:RAM:By_Address) tells us that we have **69090** bytes of safeRAM, or free bytes that our program can use for whatever purpose, as long as we clean up after.
-
-Add these equates to the top of your code then:
-
-```asm
-xPos := pixelShadow2
-yPos := xPos+3
-```
+But wait. Where are `yPos` and `xPos` actually located? The special `xPos := $ - 3` allows the code to self-modify itself, and update the position without needing to use extra RAM. This is reffered to as Self-Modifying-Code, or SMC for short.
 
 Now we have the code to move a rectangle, and the code to draw a rectangle. So, we need some code to actually update the screen if a key is pressed.
 
@@ -176,22 +139,22 @@ Note that if we simply redraw the square, the old square won't be erased. As of 
 
 Option one is the preferred choice for now. In the next tutorial we will learn more about drawing to the LCD.
 
-This subroutine should preform what we need. First, it clears the screen, and then draws the new rectangle posistion. From the key input code block, you can now see where `RedrawScreen` comes from.
+This subroutine should preform what we need. First, it clears the screen, and then draws the new rectangle posistion. From the key input code block, you can now see where `redraw_screen` comes from.
 
 ```asm
-RedrawScreen:
-	ld	hl,vram
-	ld	bc,(lcdWidth*lcdHeight)-1
-	call	_MemClear	; set the LCD background to black
+redraw_screen:
+	ld	hl,ti.vRam
+	ld	bc,ti.lcdWidth * ti.lcdHeight
+	call	ti.MemClear		; set the LCD background
 
-	ld	a,RECT_COLOR_I	; change the color of the rectangle
-	ld	(rcolor),a
+	ld	a,RECT_COLOR_I		; change the color of the rectangle
+	ld	(draw_rectangle.color),a
 
 	ld	de,(xPos)
 	ld	hl,(yPos)
 	ld	a,RECT_WIDTH
 	ld	bc,RECT_HEIGHT
-	jp	DrawRectangle
+	jp	draw_rectangle
 ```
 
 `RECT_WIDTH`, `RECT_HEIGHT`, and `RECT_COLOR_I` are simply defines you can add to the top of your code:
@@ -220,26 +183,23 @@ This program demonstrates how one might do that. Now, you should be able to move
 Let's keep going!
 
 ```asm
-include 'ez80.inc'
-include 'ti84pceg.inc'
-include 'tiformat.inc'
+include 'include/ez80.inc'
+include 'include/ti84pceg.inc'
+include 'include/tiformat.inc'
 format ti executable 'DEMO'
 
 RECT_WIDTH := 10
 RECT_HEIGHT := 10
 RECT_COLOR_I := 255
 
-xPos := pixelShadow2
-yPos := xPos+3
-
 ; Start of program code
-	call	_RunIndicOff	; turn off run indicator
-	di			; disable interrupts
+	call	ti.RunIndicOff		; turn off run indicator
+	di				; disable interrupts
 
-_Create1555Palette:
-	ld	hl,mpLcdPalette	; mmio address of lcd palette
+create1555palette:
+	ld	hl,ti.mpLcdPalette	; mmio address of lcd palette
 	ld	b,0
-.cp1555Loop:
+.loop:
 	ld	d,b
 	ld	a,b
 	and	a,192
@@ -254,143 +214,146 @@ _Create1555Palette:
 	ld	(hl),d
 	inc	hl
 	inc	b
-	jr	nz,.cp1555Loop
+	jr	nz,.loop
 
-	call	_boot_ClearVRAM	; set all of vram to index 255 (white)
-	ld	a,lcdbpp8
-	ld	(mpLcdCtrl),a	; enable 8bpp mode
+	call	ti.boot.ClearVRAM	; set all of vram to index 255 (white)
+	ld	a,ti.lcdBpp8
+	ld	(ti.mpLcdCtrl),a	; enable 8bpp mode
 
-MainPrgmLoop:
+main_loop:
 	di
-	ld	hl,DI_Mode	; register for keypad mode
-	ld	(hl),2		; set single scan mode
+	ld	hl,ti.DI_Mode		; register for keypad mode
+	ld	(hl),2			; set single scan mode
 
 	xor	a,a
-ScanWait:
-	cp	a,(hl)		; Wait for Idle mode
-	jr	nz,ScanWait
+scan_wait:
+	cp	a,(hl)			; wait for keypad idle mode
+	jr	nz,scan_wait
 
 ; Read data registers here as needed
 
-	ld	a,(kbdG6)
-	bit	kbitClear,a
-	jp	nz,ExitPrgm	; exit the program if [CLEAR] is pressed
+	ld	a,(ti.kbdG6)
+	bit	ti.kbitClear,a
+	jp	nz,exit_prgm		; exit the program if [CLEAR] is pressed
 
-	ld	a,(kbdG7)
+	ld	a,(ti.kbdG7)
 	push	af
- 	bit	kbitUp,a
- 	call	nz,RequestUp     ; is [UP] pressed?
-
-	pop	af
-	push	af
-	bit	kbitRight,a
-	call	nz,RequestRight	; is [RIGHT] pressed?
+ 	bit	ti.kbitUp,a
+ 	call	nz,request_up   	  ; is [UP] pressed?
 
 	pop	af
 	push	af
-	bit	kbitLeft,a
-	call	nz,RequestLeft	; is [LEFT] pressed?
+	bit	ti.kbitRight,a
+	call	nz,request_right	; is [RIGHT] pressed?
 
 	pop	af
 	push	af
-	bit	kbitDown,a
-	call	nz,RequestDown	; is [DOWN] pressed?
+	bit	ti.kbitLeft,a
+	call	nz,request_left		; is [LEFT] pressed?
+
+	pop	af
+	push	af
+	bit	ti.kbitDown,a
+	call	nz,request_down		; is [DOWN] pressed?
 
  	pop	af
 	or	a,a
-	call	nz,RedrawScreen	; if any key is pressed, update the screen
+	call	nz,redraw_screen	; if any key is pressed, update the screen
 
-	jp	MainPrgmLoop
+	jp	main_loop
 
-RequestUp:
-	ld	a,(yPos)
+request_up:
+	ld	a,0
+yPos := $ - 1
 	dec	a
-	ret	z		; return if @ 1
+	ret	z			; return if @ 1
 	ld	(yPos),a
 	ret
 
-RequestRight:
-	ld	hl,(xPos)
+request_right:
+	ld	hl,0
+xPos := $ - 3
 	inc	hl
-	ld	de,lcdWidth
+	ld	de,ti.lcdWidth
 	or	a,a
 	sbc	hl,de
 	add	hl,de
-	ret	z		; return if @ 319
+	ret	z			; return if @ 319
 	ld	(xPos),hl
 	ret
 
-RequestLeft:
+request_left:
 	ld	hl,(xPos)
 	dec	hl
 	add	hl,de
 	or	a,a
 	sbc	hl,de
-	ret	z		; return if @ 1
+	ret	z			; return if @ 1
 	ld	(xPos),hl
 	ret
 
-RequestDown:
+request_down:
 	ld	a,(yPos)
 	inc	a
-	cp	lcdHeight
-	ret	z		; return if @ 239
+	cp	a,ti.lcdHeight
+	ret	z			; return if @ 239
 	ld	(yPos),a
 	ret
 
-RedrawScreen:
-	ld	hl,vram
-	ld	bc,(lcdWidth*lcdHeight)-1
-	call	_MemClear	; set the LCD background to black
+redraw_screen:
+	ld	hl,ti.vRam
+	ld	bc,ti.lcdWidth * ti.lcdHeight
+	call	ti.MemClear		; set the LCD background
 
-	ld	a,RECT_COLOR_I	; change the color of the rectangle
-	ld	(rcolor),a
+	ld	a,RECT_COLOR_I		; change the color of the rectangle
+	ld	(draw_rectangle.color),a
 
 	ld	de,(xPos)
 	ld	hl,(yPos)
 	ld	a,RECT_WIDTH
 	ld	bc,RECT_HEIGHT
-;	jp	DrawRectangle
+;	jp	draw_rectangle
 
 ;----------------------------------------
-; DrawRectangle
+; draw_rectangle
 ; inputs:
 ;         de = x
 ;          l = y
 ;         bc = width
 ;          a = height
 ;  rcolor = color of rectangle
-;  this routine can be greatly optimized
+;  this routine can be greatly optimized!
 ;----------------------------------------
-DrawRectangle:
-	ld	h,320/2		; h=160
-	mlt	hl		; 160*y
-	add	hl,hl		; hl*2
-	add	hl,de		; add x coordinate
-	ld	de,vRam
-	add	hl,de		; offset vRam
-	dec	bc		; for ldir
+draw_rectangle:
+	ld	h,ti.lcdWidth / 2	; h = 160
+	mlt	hl			; 160 * y
+	add	hl,hl			; hl * 2
+	add	hl,de			; add x coordinate
+	ld	de,ti.vRam
+	add	hl,de			; offset vRam
+	dec	bc			; for ldir
 .loop:
-rcolor := $+1
 	ld	(hl),0
+.color := $ - 1
 	push	hl
 	pop	de
 	inc	de
 	push	bc
-	ldir			; draw line
+	ldir				; draw line
 	pop	bc
-	ld	de,320
-	add	hl,de		; move down
+	ld	de,ti.lcdWidth
+	add	hl,de			; move down
 	sbc	hl,bc
 	dec	a
 	jr	nz,.loop
 	ret
 
-ExitPrgm:
-	call	_ClrScrn
-	ld	a,lcdbpp16
-	ld	(mpLcdCtrl),a
-	call	_DrawStatusBar
-	ei			; reset screen back to normal
-	ret			; return to os
+exit_prgm:
+	call	ti.ClrScrn
+	ld	a,ti.lcdBpp16
+	ld	(ti.mpLcdCtrl),a
+	call	ti.DrawStatusBar
+	ei				; reset screen back to normal
+	ret				; return to os
+
 ```

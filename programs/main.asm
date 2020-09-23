@@ -1,6 +1,6 @@
 include 'include/ez80.inc'
-include 'include/ti84pceg.inc'
 include 'include/tiformat.inc'
+include 'include/ti84pceg.inc'
 format ti executable 'DEMO'
 
 	call	ti.HomeUp

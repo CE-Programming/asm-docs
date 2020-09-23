@@ -6,7 +6,8 @@ You can find the keypad hardware documentation [**here**](http://wikiti.brandonw
 
 # The Code
 
-Let us begin with a simple routine to draw a square. Since we are in 8bpp mode, this becomes fairly trivial, as all we have to do is draw a horizontal line, and repeat this for however tall the square is.
+Let us begin with a simple routine to draw a square.
+Since we are in 8bpp mode, this becomes fairly trivial, as all we have to do is draw a horizontal line, and repeat this for however tall the square is.
 
 Note that we have also set up our default palette.
 
@@ -46,7 +47,9 @@ draw_rectangle:
 	ret
 ```
 
-Now that we have the code to draw a rectangle, we need to understand how the keypad controller works. Per the [**WikiTI page**](http://wikiti.brandonw.net/index.php?title=84PCE:Ports:A000), the simplest way to scan is to perform a single scan. The following code accomplishes that:
+Now that we have the code to draw a rectangle, we need to understand how the keypad controller works.
+Per the [**WikiTI page**](http://wikiti.brandonw.net/index.php?title=84PCE:Ports:A000), the simplest way to scan is to perform a single scan.
+The following code accomplishes that:
 
 (**Note:** interrupts must be disabled when executing this code in order to prevent the OS from taking control).
 
@@ -128,18 +131,23 @@ request_down:
 	ret
 ```
 
-But wait. Where are `yPos` and `xPos` actually located? The special `xPos := $ - 3` allows the code to self-modify itself, and update the position without needing to use extra RAM. This is reffered to as Self-Modifying-Code, or SMC for short.
+But wait. Where are `yPos` and `xPos` actually located? The special `xPos := $ - 3` allows the code to self-modify itself, and update the position without needing to use extra RAM.
+This is reffered to as Self-Modifying-Code, or SMC for short.
 
-Now we have the code to move a rectangle, and the code to draw a rectangle. So, we need some code to actually update the screen if a key is pressed.
+Now we have the code to move a rectangle, and the code to draw a rectangle.
+So, we need some code to actually update the screen if a key is pressed.
 
-Note that if we simply redraw the square, the old square won't be erased. As of right now, we have two options:
+Note that if we simply redraw the square, the old square won't be erased.
+As of right now, we have two options:
 
 * Clear the screen on each redraw
 * Only redraw the portions that the rectangle shifted by
 
 Option one is the preferred choice for now. In the next tutorial we will learn more about drawing to the LCD.
 
-This subroutine should preform what we need. First, it clears the screen, and then draws the new rectangle posistion. From the key input code block, you can now see where `redraw_screen` comes from.
+This subroutine should preform what we need.
+First, it clears the screen, and then draws the new rectangle posistion.
+From the key input code block, you can now see where `redraw_screen` comes from.
 
 ```asm
 redraw_screen:
@@ -171,7 +179,8 @@ Of course, the next reasonable question is, how do I put this all together?
 
 First, you need an your key input to be in a loop, so that way you can continuously poll data from the keypad.
 
-This program demonstrates how one might do that. Now, you should be able to move your rectangle across the screen. Some fun challenges:
+This program demonstrates how one might do that. Now, you should be able to move your rectangle across the screen.
+Some fun challenges:
 
 * Slow down the speed of the rectangle movement
  * (Hint: Loop for a long time)
@@ -184,8 +193,8 @@ Let's keep going!
 
 ```asm
 include 'include/ez80.inc'
-include 'include/ti84pceg.inc'
 include 'include/tiformat.inc'
+include 'include/ti84pceg.inc'
 format ti executable 'DEMO'
 
 RECT_WIDTH := 10
@@ -355,5 +364,4 @@ exit_prgm:
 	call	ti.DrawStatusBar
 	ei				; reset screen back to normal
 	ret				; return to os
-
 ```

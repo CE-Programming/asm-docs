@@ -424,7 +424,7 @@ macro ?! isreg: metadata 1 element 1 eq @ez80
 			check rhs relativeto after
 			jno far
 			compute offset, rhs - after
-			check offset | definite rhs
+			check offset & offset <> -suffixsize | definite rhs
 			jno after
 			check -200o <= offset & offset < 200o
 			jno far

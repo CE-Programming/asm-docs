@@ -6,8 +6,6 @@ Tutorials are located in the *tutorials* directory, and numbered in order of abi
 
 ### External links
 
-For more help, these links may be helpful:
-
 [Official eZ80 CPU documentation](http://www.zilog.com/docs/um0077.pdf)
 
 [eZ80 opcode list](http://mdfs.net/Docs/Comp/eZ80/OpList)
